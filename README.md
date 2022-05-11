@@ -9,7 +9,9 @@ Maven 3.x.x (check: ```mvn -v```)
 start: ```mvn spring-boot:run```  
 compile: ```mvn clean package```  
 test data + start: compile + ```java -Dspring.profiles.active=datagen -jar target/Gruppe8-0.0.1-SNAPSHOT.jar```  
-backend is available under: ```http://localhost:8080```
+backend is available under: ```http://localhost:8080```  
+database is available under: ```http://localhost:8080/h2-console``` (JDBC URL: ```jdbc:h2:./eHealth```, User Name: ```sa```,
+no password)
 
 #### frontend
 [all in /frontend]  
