@@ -1,0 +1,96 @@
+<div class="bd-example bd-example-tabs">
+  <div class="row mt-2">
+    <div class="col-3 py-2 ">
+      <div class="prim round-corner p-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="tab-link nav-link  active show" (click)="onTabClick('v-pills-allg')" id="v-pills-allg-tab" data-toggle="pill" href="{{link}}#v-pills-allg" role="tab" aria-controls="v-pills-allg" aria-selected="false">
+          <i class="bi bi-person-lines-fill"></i>
+          Allgemein
+        </a>
+        <a class="tab-link nav-link" (click)="onTabClick('v-pills-region')"id="v-pills-region-tab" data-toggle="pill" href="{{link}}#v-pills-region" role="tab" aria-controls="v-pills-region" aria-selected="false">
+          <i class="bi bi-geo-alt-fill"></i>
+          Region
+        </a>
+        <a class="tab-link nav-link" (click)="onTabClick('v-pills-schmerz')" id="v-pills-schmerz-tab" data-toggle="pill" href="{{link}}#v-pills-schmerz" role="tab" aria-controls="v-pills-schmerz" aria-selected="true">
+          <i class="bi bi-lightning-fill"></i>
+          Schmerzen
+        </a>
+        <a class="tab-link nav-link" (click)="onTabClick('v-pills-settings')" id="v-pills-settings-tab" data-toggle="pill" href="{{link}}#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+      </div>
+      </div>
+        <div class="d-flex">
+      <div id="btn_before" (click)="previousTab()" class="btn"><i class="bi bi-chevron-left"></i> </div>
+      <div id="btn_search" (click)="Questionnaire()" class="btn">search</div>
+      <div id="btn_next" (click)="nextTab()" class="btn"><i class="bi bi-chevron-right"></i></div>
+    </div>
+    </div>
+    <div class="col-9">
+      <form [formGroup]="questionnaireForm"  (ngSubmit)="Questionnaire()">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade  active show" id="v-pills-allg" role="tabpanel" aria-labelledby="v-pills-allg-tab">
+          <div class="rectangle">
+            <h5>Welches Geschlecht haben Sie?</h5>
+            <input formControlName="gender" type="radio" class="btn-check" value="g_male" name="gender" id="g_male" autocomplete="off">
+            <label class="btn btn-sec" for="g_male">Männlich</label>
+
+            <input formControlName="gender" type="radio" class="btn-check" value="g_female" name="gender" id="g_female" autocomplete="off">
+            <label class="btn btn-sec" for="g_female">Weiblich</label>
+
+            <input formControlName="gender" type="radio" class="btn-check" value="g_divers" name="gender" id="g_div" autocomplete="off">
+            <label class="btn btn-sec" for="g_div">Divers</label>
+          </div>
+          <div class="rectangle mt-2">
+            <h5>Wie alt sind Sie?</h5>
+            <div class="">
+              <input class="input-text" type="text" id="age" formControlName="age"><span class="ms-2">Jahre</span>
+            </div>
+          </div>
+          <div class="rectangle mt-2">
+            <h5>Wo befinden Sie sich?</h5>
+            <div >
+              <input class="input-text" type="text" id="location" formControlName="location">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-region" role="tabpanel" aria-labelledby="v-pills-region-tab">
+          <div style="width: 250px; height: auto">
+            <svg id="bodypart-areas-svg" class="body-areas-svg" width="100%" height="100%" viewBox="0 0 430 600" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 1.5;">
+              <desc>Hoverable areas of the body for selection. Copyright Philipp Tschandl</desc>
+              <path id="HeadNeck" d="M301,91l0.955-20.835l-0.714,18.342l-4.075-3.34L290.5,65v-6l-0.783-11.834l2.449,0.334L288.5,47l1.049-12.133L292.5,25l5-7l7-4l9-2l13,1l8,7l6,9l1,13v11l-4.001,7.917L323.25,62l-12.75-3.875l-9.888-6.205l0.637,0.996l9.251,5.208L323.25,62l13.25-1l1,27l1.104,3.406L330,95l-18-1L301,91z M90,115l14.5,1l10.5-1.105L133.5,110l-17-8l-1-10L105,91L90.818,80.028l-3.052-11.782l3.052,11.782L105,91l10.5,1h3l5-6l5.066-19l0.934-14l-1-10l-3-11l-11,1l-10,2l-10,6l-7.441,9.094L86.5,50.777l8-9.777l10-6l10-2l11-1h2l-7-9l-11-5l-12,2l-8,4l-7,6l-3,6l-1,13l5.143,1.143L79.5,50l-2,7l5.253,9.047l1.53,14.915L81.5,97L68,110L90,115z"></path>
+              <path id="Trunk" d="M90,115l14.5,1l10.5-1.105L133.5,110l12.5,6l-2,11l3,10l3,19l-3,27l-4,24l2,25l-2,20l-8,3l-7.301,9.182L107,283H92l-24.833-28.5L58,252l-1-13l2-17l2-14l-5-18l-6-11l-2-31l5-18l-1-12l16-8L90,115z M301,91l-3,6l-18,6l-8,6l1,10l-1,22l-2,42l4,14l1,12l-2,25v21l-6.147,35.131L279,303l19,3l16.625-1L313,280h8l-1.125,25L333,307l14-2l19.898-17.646L360,252v-23l-3-22l8-23l2-17l-2-26l-2-31l-25-18l-8,3l-18-1L301,91" class=""></path>
+              <path id="UpperEx" d="M53,130l-5,18l1,9l1,22l-10,25l-3,16l-3,16l-11,30l-3,19v8l6,6l3.375,14L31,326l-5,5v16l-4,1l-10-13L2,318l2.625-12L1,300l3-16l7-65l5-10l5-18l1-14l5-15.332v-10L29,140l8-15l15-7L53,130z M144,127l3,10l3,19l-2,24l7,34l3,17l4,12l12,30l4,19l1,8l-5,6l-3,6v6l-2,6l-2.167,9l7.167,9l-2,9l4,4l12.843-12.987l4.042-13.513L194,310l1-7l-3-11l-8-67l-7-20l-1-6l-4-27l-2-9v-15l-4-14l-7-10l-13-8L144,127z M272.4,108.7L266,110l-8,5l-10,9l-3,18l-2,12l-4,14l-2,23l-4,13l-6,19l-7,66l-2,19l1,22l6,10l11,12h4l1-15l6-1v-5l-3-11l1-4l-5-10l-4-7l1-9l2-18l15-36v-10l3-12l2-11l9-24l3-19l1-19l1-22L272.4,108.7z M364,128.001L365.308,145L367,168l6,22l4,8l1,6l2.863,10.5L382,226l2,5l13.497,35.67L400,283v7l-7,6l-3,11l-4,19l1,4l7-3l-2,19l3,1l7-7l4-9l10-9l1-19l-2-18l-4-65l-7-20l-6-23.332V167l-6-15v-15l-9-17l-17-9l-3-1L364,128.001z" class=""></path>
+              <path id="LowerEx" d="M67.167,254.5l7.406,8.5l6.178,29.252L89,306l10,10l-1,29l-7,31l-1.4,19.8L86,412l-2,2v16l3,15l-2,19l-6,31l3,34l2,18l1,7l-1,8l-8,3l-4,7l-11,3l-20-5l1-8l15-13v-6l-2-4l6-12l-9-66v-24l3-18v-14l-2-24l-5-21v-53l10-55L67.167,254.5z M101,315l3,34l6,24l3.333,27L118,412l-3,41l8,36l-1,36l-4,12v8l-1,11l3,5l5,1l7,10l9,1l21-3v-8l-17-19l0.714-6L141,527l2-27l7-38v-25l-4-22l0.218-11.013L147,386l6-24l2-25l-12-85l-8,3l-7.301,9.182l-6.949,27.568L101,315z M266.853,290.131L262,325l1,41l4,16v30l-1,22l-3,16l2,25l7,43l1,16l-4,8v7v5l-12,7l-3,7l32,11l10-5l3-10l-2-10l-2-8l-1-10l-2-42l9-36l-2-21l-2-15l7-26l1-17l10-35l1-19.5l-1.375-19.5L298,306l-19-3L266.853,290.131z M319.875,305L319,327v8l2,18l4,22l3,28l6,17l-1,13l-3,12l1.514,17.497L338,494v21l-2,22l-3,7l-1,6l1,15l2,8l11,3l30-11v-6l-14-9l-4-13l-1-12l4-22l4-30l2-22l-3-30l-3-20l6-38l4-29l-4.102-46.646L347,305l-14,2l-10-2H319.875z" class=""></path>
+              <path id="Anogenital" d="M92,283h15l20.699-18.818l-6.949,27.568L101,315l-2,1l-10-10l-8.249-13.748L74.573,263L92,283z M319.875,305L321,280h-8l1.625,25H319.875z" class=""></path>
+            </svg>
+          </div>
+
+        </div>
+        <div class="tab-pane fade" id="v-pills-schmerz" role="tabpanel" aria-labelledby="v-pills-schmerz-tab">
+          <div class="rectangle mt-2">
+            <h5>Haben Sie schmerzen?</h5>
+            <input formControlName="pain" type="radio" class="btn-check" value="pain_yes" name="pain" id="pain_yes" autocomplete="off">
+            <label class="btn btn-sec" for="pain_yes">ja</label>
+
+            <input formControlName="pain" type="radio" class="btn-check" value="pain_no" name="pain" id="pain_no" autocomplete="off">
+            <label class="btn btn-sec" for="pain_no">nein</label>
+          </div>
+          <div class="rectangle mt-2">
+            <h5>Wie stark sind die Schmerzen?</h5>
+
+          </div>
+          <div class="rectangle mt-2">
+            <h5>Seit wann haben Sie Schmerzen?</h5>
+            <input formControlName="pain_date" type="text" class="input-text"id="pain_date">
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+        </div>
+      </div>
+        <button id="submit_questionnaire" type="submit" class="example-button prim" style="margin-left: 1em" >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

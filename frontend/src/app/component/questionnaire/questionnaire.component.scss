@@ -1,0 +1,19 @@
+.nav-link.active.show{
+  //background-color: #ACACAC !important;
+  background-color: #AFE1DE !important;
+  border: #639492 solid 3px;
+  border-radius: 10px;
+}
+
+.nav-link{
+  border: #AFE1DE solid 3px;
+}
+
+.btn-sec{
+  border-radius: 10px;
+  background-color: #CACACA;
+  margin: 10px;
+}
+.btn-sec:active{
+  color: red;
+}
