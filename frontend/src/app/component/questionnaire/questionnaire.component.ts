@@ -1,5 +1,5 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-questionnaire',
@@ -17,6 +17,9 @@ export class QuestionnaireComponent implements OnInit {
     {label: 'Divers', value:'g_div'}
   ]
 
+  body_elements;
+  test = new Array();
+
   questionnaireForm = new FormGroup({
       gender: new FormControl(),
       age: new FormControl(),
@@ -31,12 +34,24 @@ export class QuestionnaireComponent implements OnInit {
       location:[''],
       pain:[''],
       pain_date:[''],
+      // bodypart: [new Array()]
+      bodypart: this.formBuilder.array([new FormControl()])
 
     });
+
   }
 
   ngOnInit(): void {
-
+    this.body_elements = document.getElementsByTagName('path');
+    console.log(this.body_elements)
+    for (let i = 0; i < this.body_elements.length; i++) {
+      this.body_elements[i].addEventListener("click", () => {
+        if(this.questionnaireForm.controls.bodypart)
+        // this.questionnaireForm.controls.bodypart.push(this.body_elements[i].id) as FormArray;
+        this.questionnaireForm.controls.bodypart =this.body_elements[i].id;
+        console.log(this.questionnaireForm.controls.bodypart)
+      })
+    }
   }
 
   link = '/fragebogen';
