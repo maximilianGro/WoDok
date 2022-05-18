@@ -18,3 +18,22 @@
 svg path {
   background-color: antiquewhite;
 }
+.body-areas-svg path {
+  stroke: black;
+  stroke-width: 0.2em;
+  fill: #fce1d8;
+}
+
+.body-areas-svg path:hover {
+  cursor: pointer;
+  fill: #ffa288;
+}
+
+.body-areas-svg path.check {
+  fill: #fce1d8;
+
+}
+
+.body-areas-svg path.on {
+  fill: #ea6a46;
+}
