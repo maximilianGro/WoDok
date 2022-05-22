@@ -1,12 +1,12 @@
 <div class="prim">
-  <nav class="navbar navbar-expand-lg wodok py-3">
+  <nav class="navbar navbar-expand-lg wodok py-4">
     <img class="m-2" alt="WoDokLogo" src="assets/img/doctors.png" height="50px" width="auto">
     <a class="navbar-brand text-black" style="font-size: 30px" routerLink="/">WoDok</a>
     <i class="bi bi-person-fill p-2" style="margin-left: auto;font-size: 25px"></i>
   </nav>
 </div>
 <nav>
-  <div class="sec" >
+  <div class="sec" id="navbarToggle" [ngbCollapse]="isCollapsed">
     <ul class="nav mt-2 mt-lg-0 wodok">
       <li class="nav-item ">
         <a class="nav-link" routerLink="/practitioners">Practitioners</a>
