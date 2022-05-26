@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'WoDok';
+
+  urlParam = new URLSearchParams(window.location.pathname);
+
+
 }

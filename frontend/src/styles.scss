@@ -18,3 +18,26 @@
 .nav-link  {
   color: black !important;
 }
+
+.round-corner{
+  border-radius: 10px;
+}
+
+.rectangle{
+  border-radius: 10px;
+  border: #639492 solid 3px;
+  background-color: #EBFFFF;
+  padding: 10px;
+}
+.input-text {
+  border-radius: 10px;
+  border: white solid 3px;
+  background-color: white;
+  padding: 5px;
+}
+.btn-prim{
+  border-radius: 10px;
+  background-color: #639492;
+  margin: 10px;
+  color: white;
+}

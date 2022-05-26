@@ -23,4 +23,13 @@ export class PractitionerService {
   getAll(): Observable<Practitioner[]> {
     return this.http.get<Practitioner[]>(baseUri);
   }
+
+  /**
+   * Get one practitioner by id stored in the system
+   *
+   * @return observable practitioner
+   */
+  getOne(id): Observable<Practitioner> {
+    return this.http.get<Practitioner>(baseUri + "/" + id);
+  }
 }
