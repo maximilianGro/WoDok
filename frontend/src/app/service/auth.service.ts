@@ -37,12 +37,20 @@ export class AuthService {
       );
   }
 
-  registerUser(registerRequest: Registration): Observable<Registration> {
-    return this.httpClient.post<Registration>(this.registerBaseUri, registerRequest);
+  /**
+   * Register the user. If it was successful, a valid JWT token will be stored
+   *
+   * @param authRequest User data
+   */
+  registerUser(authRequest: AuthRequest): Observable<string> {
+    return this.httpClient.post(this.authBaseUri, authRequest, {responseType: 'text'})
+      .pipe(
+        tap((authResponse: string) => this.setToken(authResponse))
+      );
   }
 
   setUsername(authRequest: AuthRequest){
-    this.username = authRequest.username;
+    this.username = authRequest.email;
     localStorage.setItem('username',this.username);
   }
 

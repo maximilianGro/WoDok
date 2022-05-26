@@ -1,7 +1,9 @@
 package eHealth.service.impl;
 
 import eHealth.Repository.UserRepository;
+import eHealth.dto.UserRegisterDto;
 import eHealth.entity.User;
+import eHealth.exception.ContextException;
 import eHealth.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.invoke.MethodHandles;
@@ -19,10 +22,12 @@ import java.util.List;
 public class UserService implements eHealth.service.UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -77,5 +82,26 @@ public class UserService implements eHealth.service.UserService {
             user.setLockedCounter(0);
             userRepository.save(user);
         }
+    }
+
+    @Override
+    public User createUser(UserRegisterDto user) {
+        LOGGER.debug("Create application user");
+        if (user == null) {
+            throw new IllegalArgumentException("Please fill out all the mandatory fields");
+        }
+        User foundUser = userRepository.findUserByEmail(user.getEmail());
+        if (foundUser != null) {
+            throw new ContextException("E-mail already used");
+        } else {
+            return userRepository.save(new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), 0,
+                    false, user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(),
+                    user.getBirthday()));
+        }
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 }

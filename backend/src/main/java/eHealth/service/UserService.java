@@ -1,9 +1,14 @@
 package eHealth.service;
 
+import eHealth.dto.UserRegisterDto;
 import eHealth.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 public interface UserService extends UserDetailsService {
+    List<User> getAll();
+
     /**
      * Find an application user based on the email address.
      *
@@ -25,4 +30,11 @@ public interface UserService extends UserDetailsService {
      * @param email of the user
      */
     void resetLockedCounter(String email);
+
+    /**
+     * Create an application user.
+     *
+     * @param user that should be registered
+     */
+    User createUser(UserRegisterDto user);
 }

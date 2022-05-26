@@ -2,13 +2,11 @@ package eHealth.entity;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "user_table")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +24,36 @@ public class User {
 
     @Column(nullable = false)
     private Boolean doctor;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column
+    private String address;
+
+    @Column
+    private String city;
+
+    @Column
+    private String birthday;
+
+    public User(String email, String password, int lockedCounter, Boolean doctor, String firstName, String lastName, String address, String city, String birthday) {
+        this.email = email;
+        this.password = password;
+        this.lockedCounter = lockedCounter;
+        this.doctor = doctor;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.birthday = birthday;
+    }
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -65,5 +93,45 @@ public class User {
 
     public void setDoctor(Boolean doctor) {
         this.doctor = doctor;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

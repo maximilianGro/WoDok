@@ -13,12 +13,11 @@ import java.util.List;
 @Component
 public class JwtTokenizer {
 
-    @Autowired
-    private SecurityProperties securityProperties;
+    private final SecurityProperties securityProperties;
 
-//    public JwtTokenizer(SecurityProperties securityProperties) {
-//        this.securityProperties = securityProperties;
-//    }
+    public JwtTokenizer(SecurityProperties securityProperties) {
+        this.securityProperties = securityProperties;
+    }
 
     public String getAuthToken(String user, List<String> roles) {
         byte[] signingKey = securityProperties.getJwtSecret().getBytes();

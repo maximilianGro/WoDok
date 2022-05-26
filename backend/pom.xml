@@ -16,7 +16,7 @@
         <spring-boot.version>2.5.6</spring-boot.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <h2.version>2.1.210</h2.version>
+        <h2.version>1.4.200</h2.version>
         <jjwt.version>0.11.2</jjwt.version>
     </properties>
 
@@ -62,8 +62,6 @@ t</groupId>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
