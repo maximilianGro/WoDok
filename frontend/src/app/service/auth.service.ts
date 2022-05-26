@@ -6,6 +6,7 @@ import {tap} from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import {environment} from "../../environments/environment";
 import {SimpleUser} from "../dto/simple-user";
+import {Registration} from "../dto/registration";
 
 
 @Injectable({
@@ -13,7 +14,10 @@ import {SimpleUser} from "../dto/simple-user";
 })
 export class AuthService {
 
-  private authBaseUri: string = environment.backendUrl + '/authentication';
+  private backendUrl =  environment.backendUrl;
+
+  private authBaseUri: string = this.backendUrl + '/authentication';
+  private registerBaseUri: string = this.backendUrl + '/register';
 
   private username = '';
 
@@ -31,6 +35,10 @@ export class AuthService {
       .pipe(
         tap((authResponse: string) => this.setToken(authResponse))
       );
+  }
+
+  registerUser(registerRequest: Registration): Observable<Registration> {
+    return this.httpClient.post<Registration>(this.registerBaseUri, registerRequest);
   }
 
   setUsername(authRequest: AuthRequest){
