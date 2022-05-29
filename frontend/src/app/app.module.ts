@@ -12,6 +12,10 @@ import { QuestionnaireComponent } from './component/questionnaire/questionnaire.
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { PractitionerDetailComponent } from './component/practitioner-detail/practitioner-detail.component';
+import { ReminderDetailComponent } from './component/reminder-detail/reminder-detail.component';
+import { ReminderOverviewComponent } from './component/reminder-overview/reminder-overview.component';
+import { ReminderCreateComponent } from './component/reminder-create/reminder-create.component';
+import { InfoComponent } from './component/info/info.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { PractitionerDetailComponent } from './component/practitioner-detail/pra
     LoginComponent,
     RegisterComponent,
     PractitionerDetailComponent,
+    ReminderDetailComponent,
+    ReminderOverviewComponent,
+    ReminderCreateComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
