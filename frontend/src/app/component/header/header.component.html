@@ -2,17 +2,39 @@
   <nav class="navbar navbar-expand-lg wodok py-4">
     <img class="m-2" alt="WoDokLogo" src="assets/img/doctors.png" height="50px" width="auto">
     <a class="navbar-brand text-black" style="font-size: 30px" routerLink="/">WoDok</a>
-    <i class="bi bi-person-fill p-2" style="margin-left: auto;font-size: 25px"></i>
+    <div class="dropstart" style="margin-left: auto;">
+      <button class="btn btn-prim dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+        <i class="bi bi-person-fill p-2" style="font-size: 25px"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a *ngIf="authService.isLoggedIn()" href="#" (click)="authService.logoutUser()" class="dropdown-item">Logout</a>
+        <a *ngIf="!authService.isLoggedIn()" href="/login" class="dropdown-item">Login</a>
+        <a href="#" class="dropdown-item">{{authService.getusername()}}</a>
+      </div>
+    </div>
+
   </nav>
 </div>
 <nav>
   <div class="sec" id="navbarToggle" [ngbCollapse]="isCollapsed">
     <ul class="nav mt-2 mt-lg-0 wodok">
       <li class="nav-item ">
+        <a class="nav-link" routerLink="/infos">Informationen</a>
+      </li>
+      <li class="nav-item ">
         <a class="nav-link" routerLink="/practitioners">Practitioners</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/fragebogen">Fragebogen</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="#">Arztsuche</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/termin-uebersicht">Terminübersicht</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="#">Terminerinnerung</a>
       </li>
     </ul>
   </div>

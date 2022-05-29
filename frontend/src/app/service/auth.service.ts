@@ -105,4 +105,9 @@ export class AuthService {
     return date;
   }
 
+  logoutUser() {
+    console.log('Logout');
+    localStorage.removeItem('authToken');
+  }
+
 }
