@@ -95,7 +95,7 @@ public class UserService implements eHealth.service.UserService {
             throw new ContextException("E-mail already used");
         } else {
             return userRepository.save(new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), 0,
-                    false, user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(),
+                    false, user.getFirstName(), user.getLastName(), user.getCity(), user.getZip(), user.getCountry(), user.getStreet(),
                     user.getBirthday()));
         }
     }

@@ -32,23 +32,31 @@ public class User {
     private String lastName;
 
     @Column
-    private String address;
+    private String city;
 
     @Column
-    private String city;
+    private String zip;
+
+    @Column
+    private String country;
+
+    @Column
+    private String street;
 
     @Column
     private String birthday;
 
-    public User(String email, String password, int lockedCounter, Boolean doctor, String firstName, String lastName, String address, String city, String birthday) {
+    public User(String email, String password, int lockedCounter, Boolean doctor, String firstName, String lastName, String city, String zip, String country, String street, String birthday) {
         this.email = email;
         this.password = password;
         this.lockedCounter = lockedCounter;
         this.doctor = doctor;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
         this.city = city;
+        this.zip = zip;
+        this.country = country;
+        this.street = street;
         this.birthday = birthday;
     }
 
@@ -109,14 +117,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getCity() {

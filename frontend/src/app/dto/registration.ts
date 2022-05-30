@@ -5,8 +5,10 @@ export class Registration {
     public doctor: boolean,
     public firstName: string,
     public lastName: string,
-    public address: string,
+    public street: string,
+    public zip: string,
     public city: string,
+    public country: string,
     public birthday: Date) {
   }
 }
