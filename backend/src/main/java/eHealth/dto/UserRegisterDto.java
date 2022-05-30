@@ -1,5 +1,6 @@
 package eHealth.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,11 +24,28 @@ public class UserRegisterDto {
     @NotNull(message = "Last name must not be null")
     private String lastName;
 
-    private String address;
+    private String zip;
+
+    private String country;
+
+    private String street;
 
     private String city;
 
     private String birthday;
+
+    public UserRegisterDto(String email, String password, boolean doctor, String firstName, String lastName, String zip, String country, String street, String city, String birthday) {
+        this.email = email;
+        this.password = password;
+        this.doctor = doctor;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.zip = zip;
+        this.country = country;
+        this.street = street;
+        this.city = city;
+        this.birthday = birthday;
+    }
 
     public String getEmail() {
         return email;
@@ -69,14 +87,6 @@ public class UserRegisterDto {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getCity() {
         return city;
     }
@@ -91,6 +101,30 @@ public class UserRegisterDto {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     @Override
@@ -119,7 +153,6 @@ public class UserRegisterDto {
                 ", doctor=" + doctor +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", birthday='" + birthday + '\'' +
                 '}';
