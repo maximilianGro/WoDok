@@ -47,6 +47,9 @@ public class UserRegisterDto {
         this.birthday = birthday;
     }
 
+    public UserRegisterDto() {
+    }
+
     public String getEmail() {
         return email;
     }

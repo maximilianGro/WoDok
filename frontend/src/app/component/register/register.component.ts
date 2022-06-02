@@ -18,11 +18,12 @@ export class RegisterComponent implements OnInit {
   error = false;
   errorMessage = '';
 
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router) {
     this.registerForm = this.formBuilder.group({
       vorname: ['', [Validators.required]],
       nachname: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       city: [''],
       street: [''],
       country: [''],

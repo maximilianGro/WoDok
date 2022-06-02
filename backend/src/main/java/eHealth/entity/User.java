@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_table")
@@ -45,6 +47,16 @@ public class User {
 
     @Column
     private String birthday;
+
+    // Appointments für Patienten
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "patient")
+    private List<Appointment> patientAppointments = new ArrayList<>();
+
+    // Appointments für Ärzte
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "practitioner")
+    private List<Appointment> practitionerAppointments = new ArrayList<>();
 
     public User(String email, String password, int lockedCounter, Boolean doctor, String firstName, String lastName, String city, String zip, String country, String street, String birthday) {
         this.email = email;
@@ -133,5 +145,65 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public List<Appointment> getPatientAppointments() {
+        return patientAppointments;
+    }
+
+    public void setPatientAppointments(List<Appointment> patientAppointments) {
+        this.patientAppointments = patientAppointments;
+    }
+
+    public List<Appointment> getPractitionerAppointments() {
+        return practitionerAppointments;
+    }
+
+    public void setPractitionerAppointments(List<Appointment> practitionerAppointments) {
+        this.practitionerAppointments = practitionerAppointments;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", lockedCounter=" + lockedCounter +
+                ", doctor=" + doctor +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", zip='" + zip + '\'' +
+                ", country='" + country + '\'' +
+                ", street='" + street + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", patientAppointments=" + patientAppointments +
+                ", practitionerAppointments=" + practitionerAppointments +
+                '}';
     }
 }
