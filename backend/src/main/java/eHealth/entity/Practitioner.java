@@ -32,6 +32,17 @@ public class Practitioner {
         this.lastName = lastName;
     }
 
+    public Practitioner(Long id, String firstName, String lastName, String specialty, String openingHours, String address, String phone, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialty = specialty;
+        this.openingHours = openingHours;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

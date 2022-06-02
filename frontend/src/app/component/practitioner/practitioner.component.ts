@@ -17,13 +17,14 @@ export class PractitionerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.reloadPractitioners();
+    this.reloadPractitioners();
   }
 
   reloadPractitioners() {
     this.service.getAll().subscribe({
       next: data => {
         this.practitioners = data;
+        console.log(data);
       },
       error: error => {
         console.error('Error fetching practitioners', error.message);

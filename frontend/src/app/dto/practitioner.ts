@@ -1,4 +1,10 @@
 export interface Practitioner {
   id?: number;
-  name: string;
+  firstName: string;
+  lastName: string;
+  specialty: string;
+  openingHours: string;
+  address: string;
+  phone: string;
+  email: string;
 }

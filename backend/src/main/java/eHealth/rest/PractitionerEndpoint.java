@@ -25,7 +25,7 @@ public class PractitionerEndpoint {
     private final UserService userService;
     private final PractitionerMapper mapper;
 
-    public PractitionerEndpoint(PractitionerService service, UserService  userService, PractitionerMapper mapper) {
+    public PractitionerEndpoint(PractitionerService service, UserService userService, PractitionerMapper mapper) {
         this.service = service;
         this.userService = userService;
         this.mapper = mapper;
@@ -39,19 +39,11 @@ public class PractitionerEndpoint {
 
     @GetMapping(value = "/{practitionerId}")
     @ResponseStatus(HttpStatus.OK)
-   @PermitAll
+    @PermitAll
     public PractitionerDto getPractitionerById(@PathVariable("practitionerId") Long practitionerId) {
         LOGGER.info("Get practitioner Details: " + practitionerId);
         return mapper.entityToDto(this.service.getPractitionerById(practitionerId));
-       /* try {
-            return mapper.entityToDto(this.service.getPractitionerById(practitionerId));
-        } catch (NotFoundException e) {
-            LOGGER.error("Practitioner not found", e);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Practitioner not found", e);
-        } catch (ServiceException e) {
-            LOGGER.error("Getting Practitioner Details failed", e);
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Could not get Practitioner, because Service is unavailable", e);
-        }*/
+
     }
 
     @PostMapping
