@@ -18,11 +18,16 @@ export class RegisterComponent implements OnInit {
   error = false;
   errorMessage = '';
 
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router) {
     this.registerForm = this.formBuilder.group({
       vorname: ['', [Validators.required]],
       nachname: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      city: [''],
+      street: [''],
+      country: [''],
+      zip: [''],
       geburtstag: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -60,8 +65,10 @@ export class RegisterComponent implements OnInit {
           false,
           this.registerForm.controls.vorname.value,
           this.registerForm.controls.nachname.value,
-          null,
-          null,
+          this.registerForm.controls.street.value,
+        this.registerForm.controls.zip.value,
+        this.registerForm.controls.city.value,
+        this.registerForm.controls.country.value,
           this.registerForm.controls.geburtstag.value);
 
       this.userService.createUser(registerRequest).subscribe({

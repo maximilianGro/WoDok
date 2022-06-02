@@ -7,33 +7,70 @@
     </div>
     <div class="d-flex rectangle round-corner flex-column align-items-center mx-auto">
 
-      <h3 class="mx-auto">Login</h3>
+      <h3 class="mx-auto">Register</h3>
       <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="d-flex flex-column align-items-center">
-        <div>
-          <label for="vorname">Vorname</label><br>
-          <input formControlName="vorname" id="vorname" class="rectangle bg-white" type="text">
-        </div>
-        <div>
-          <label for="nachname">Nachname</label><br>
-          <input formControlName="nachname" id="nachname" class="rectangle bg-white" type="text">
-        </div>
-        <div>
-          <label for="email">Email</label><br>
-          <input formControlName="email" id="email" class="rectangle bg-white" type="text">
-        </div>
-        <div>
-          <label for="geburtstag">Geburtstag</label><br>
-          <input formControlName="geburtstag" id="geburtstag" class="rectangle bg-white" type="text">
-        </div>
-        <div>
-          <label for="password">Passwort</label><br>
-          <input formControlName="password" id="password" class="rectangle bg-white" type="password">
-        </div>
-        <button type="submit" class="mt-2 btn btn-outline-secondary">Registrieren</button>
+        <table class="example-full-width">
+          <tr>
+            <td>
+              <label for="vorname">Vorname</label><br>
+              <input formControlName="vorname" id="vorname" class="rectangle bg-white" type="text">
+            </td>
+            <td>
+              <label for="nachname">Nachname</label><br>
+              <input formControlName="nachname" id="nachname" class="rectangle bg-white" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="email">Email</label><br>
+              <input formControlName="email" id="email" class="rectangle bg-white" type="text">
+            </td>
+            <td>
+              <label for="geburtstag">Geburtstag</label><br>
+              <input formControlName="geburtstag" id="geburtstag" class="rectangle bg-white" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="geburtstag">Street</label><br>
+              <input formControlName="street" id="street" class="rectangle bg-white" type="text">
+            </td>
+            <td>
+              <label for="geburtstag">City</label><br>
+              <input formControlName="city" id="city" class="rectangle bg-white" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="geburtstag">ZIP</label><br>
+              <input formControlName="zip" id="zip" class="rectangle bg-white" type="text">
+            </td>
+            <td>
+              <label for="geburtstag">Country</label><br>
+              <input formControlName="country" id="country" class="rectangle bg-white" type="text">
+            </td>
+          </tr>
+        </table>
+          <div style="">
+            <label for="password">Passwort</label><br>
+            <input formControlName="password" id="password" class="rectangle bg-white" type="password">
+          </div>
+
+          <div>
+            <button type="submit" class="mt-2 btn btn-outline-secondary">Registrieren</button>
+          </div>
+
       </form>
 
 
     </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Authentication problems!</strong> {{ errorMessage }}
+    <button type="button" (click)="vanishError()" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 
 </div>

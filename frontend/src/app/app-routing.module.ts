@@ -9,6 +9,7 @@ import {InfoComponent} from "./component/info/info.component";
 import {ReminderOverviewComponent} from "./component/reminder-overview/reminder-overview.component";
 import {ReminderDetailComponent} from "./component/reminder-detail/reminder-detail.component";
 import {ReminderCreateComponent} from "./component/reminder-create/reminder-create.component";
+import {PractitionerSearchComponent} from "./component/practitioner-search/practitioner-search.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'practitioners', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'termin-uebersicht', component: ReminderOverviewComponent},
   {path: 'termin/:id', component: ReminderDetailComponent},
   {path: 'termin/neu', component: ReminderCreateComponent},
+  {path: 'suche', component: PractitionerSearchComponent},
 ];
 
 @NgModule({

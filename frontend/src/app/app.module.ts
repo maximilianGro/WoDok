@@ -16,6 +16,7 @@ import { ReminderDetailComponent } from './component/reminder-detail/reminder-de
 import { ReminderOverviewComponent } from './component/reminder-overview/reminder-overview.component';
 import { ReminderCreateComponent } from './component/reminder-create/reminder-create.component';
 import { InfoComponent } from './component/info/info.component';
+import { PractitionerSearchComponent } from './component/practitioner-search/practitioner-search.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InfoComponent } from './component/info/info.component';
     ReminderOverviewComponent,
     ReminderCreateComponent,
     InfoComponent,
+    PractitionerSearchComponent,
   ],
   imports: [
     BrowserModule,

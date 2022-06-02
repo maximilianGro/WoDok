@@ -51,7 +51,7 @@ public class UserService implements eHealth.service.UserService {
 
     @Override
     public User findUserByEmail(String email) {
-        LOGGER.debug("Find application user by email");
+        LOGGER.debug("Find user by email");
         User user = userRepository.findUserByEmail(email);
         if (user == null) {
             throw new NotFoundException(String.format("Could not find the user with the email address %s", email));
@@ -95,7 +95,7 @@ public class UserService implements eHealth.service.UserService {
             throw new ContextException("E-mail already used");
         } else {
             return userRepository.save(new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), 0,
-                    false, user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(),
+                    false, user.getFirstName(), user.getLastName(), user.getCity(), user.getZip(), user.getCountry(), user.getStreet(),
                     user.getBirthday()));
         }
     }
