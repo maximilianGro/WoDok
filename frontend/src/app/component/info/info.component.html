@@ -11,3 +11,22 @@
   </div>
     <div *ngFor="let item of selected_filter" (click)="removeFromFilter(item)" class="btn btn-prim">{{item}} <i class="bi bi-x"></i></div>
 </div>
+
+<div class="row">
+  <ng-container *ngFor="let item of information" >
+    <div class="col-12 col-md-6" *ngIf="checkFilter(item.tags)">
+      <div class="rectangle m-2 p-4">
+        <h4>{{item.title}}</h4>
+        <h6 class="fst-italic">{{item.subtitle}}</h6>
+        <div>{{item.text}}</div>
+        <div class="d-flex justify-content-center">
+          <a href="#" class="btn btn-prim">Ärzte finden</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+
+</div>
+
