@@ -21,6 +21,6 @@ public class PractitionerDaoTest {
         List<Practitioner> practitioners = practitionerDao.getAll();
         assertThat(practitioners.size()).isEqualTo(3);
         assertThat(practitioners.get(0).getId()).isEqualTo(-3);
-        assertThat(practitioners.get(0).getName()).isEqualTo("Dr. Kellner");
+        assertThat(practitioners.get(0).getFirstName()).isEqualTo("Dr. Kellner");
     }
 }

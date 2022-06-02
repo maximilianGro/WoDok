@@ -6,10 +6,13 @@ import eHealth.service.PractitionerService;
 import eHealth.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.annotation.security.PermitAll;
 import java.lang.invoke.MethodHandles;
 import java.util.stream.Stream;
 
@@ -32,5 +35,29 @@ public class PractitionerEndpoint {
     public Stream<PractitionerDto> allPractitioners() {
         LOGGER.info("HAllO: " + userService.getAll());
         return service.allPractitioners().stream().map(mapper::entityToDto);
+    }
+
+    @GetMapping(value = "/{practitionerId}")
+    @ResponseStatus(HttpStatus.OK)
+   @PermitAll
+    public PractitionerDto getPractitionerById(@PathVariable("practitionerId") Long practitionerId) {
+        LOGGER.info("Get practitioner Details: " + practitionerId);
+        return mapper.entityToDto(this.service.getPractitionerById(practitionerId));
+       /* try {
+            return mapper.entityToDto(this.service.getPractitionerById(practitionerId));
+        } catch (NotFoundException e) {
+            LOGGER.error("Practitioner not found", e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Practitioner not found", e);
+        } catch (ServiceException e) {
+            LOGGER.error("Getting Practitioner Details failed", e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Could not get Practitioner, because Service is unavailable", e);
+        }*/
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PractitionerDto createPractitioner(@RequestBody PractitionerDto practitionerDto) {
+        return mapper.entityToDto(this.service.createPractitioner(mapper.dtoToEntity(practitionerDto)));
+
     }
 }
