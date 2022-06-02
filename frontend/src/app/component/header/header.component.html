@@ -9,7 +9,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a *ngIf="authService.isLoggedIn()" href="#" (click)="authService.logoutUser()" class="dropdown-item">Logout</a>
         <a *ngIf="!authService.isLoggedIn()" href="/login" class="dropdown-item">Login</a>
-        <a href="#" class="dropdown-item">{{authService.getusername()}}</a>
+        <div *ngIf="authService.isLoggedIn()" class="dropdown-item">{{authService.getusername()}}</div>
       </div>
     </div>
 
