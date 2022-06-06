@@ -36,4 +36,9 @@ public class PractitionerServiceImpl implements PractitionerService {
     public Practitioner createPractitioner(Practitioner practitioner) {
         return practitionerRepository.save(practitioner);
     }
+
+    @Override
+    public Practitioner updatePractitioner(Practitioner practitioner) {
+        return practitionerRepository.save(practitioner);
+    }
 }

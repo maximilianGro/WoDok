@@ -18,4 +18,6 @@ public interface PractitionerService {
     Practitioner getPractitionerById(Long practitionerId);
 
     Practitioner createPractitioner(Practitioner practitioner);
+
+    Practitioner updatePractitioner(Practitioner practitioner);
 }
