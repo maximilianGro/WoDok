@@ -33,9 +33,12 @@ public class PractitionerEndpoint {
     }
 
     @GetMapping
-    public Stream<PractitionerDto> allPractitioners() {
-        LOGGER.info("HAllO: " + userService.getAll());
-        return service.allPractitioners().stream().map(mapper::entityToDto);
+    public Stream<PractitionerDto> findPractitioners(@RequestParam(required = false) String speciality, @RequestParam(required = false) String address, @RequestParam(required = false) String openingHours) {
+        if (speciality == null && address == null && openingHours == null) {
+            return service.allPractitioners().stream().map(mapper::entityToDto);
+
+        }
+        return service.searchBySpecialtyAndAddressAndOpeningHours(speciality, address, openingHours).stream().map(mapper::entityToDto);
     }
 
     @GetMapping(value = "/{practitionerId}")
@@ -53,7 +56,8 @@ public class PractitionerEndpoint {
         return mapper.entityToDto(this.service.createPractitioner(mapper.dtoToEntity(practitionerDto)));
 
     }
-    @PutMapping (value = "/{practitionerId}")
+
+    @PutMapping(value = "/{practitionerId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public PractitionerDto updatePractitioner(@PathVariable("practitionerId") Long practitionerId, @RequestBody PractitionerDto practitionerDto) {
         Practitioner input = mapper.dtoToEntity(practitionerDto);
