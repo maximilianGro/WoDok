@@ -1,5 +1,6 @@
 package eHealth.rest;
 
+import eHealth.entity.Practitioner;
 import eHealth.mapper.PractitionerMapper;
 import eHealth.dto.PractitionerDto;
 import eHealth.service.PractitionerService;
@@ -50,6 +51,14 @@ public class PractitionerEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     public PractitionerDto createPractitioner(@RequestBody PractitionerDto practitionerDto) {
         return mapper.entityToDto(this.service.createPractitioner(mapper.dtoToEntity(practitionerDto)));
+
+    }
+    @PutMapping (value = "/{practitionerId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public PractitionerDto updatePractitioner(@PathVariable("practitionerId") Long practitionerId, @RequestBody PractitionerDto practitionerDto) {
+        Practitioner input = mapper.dtoToEntity(practitionerDto);
+        input.setId(practitionerId);
+        return mapper.entityToDto(this.service.updatePractitioner(input));
 
     }
 }
