@@ -5,6 +5,8 @@ import eHealth.entity.Practitioner;
 import eHealth.persistence.PractitionerDao;
 import eHealth.service.PractitionerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,4 +43,17 @@ public class PractitionerServiceImpl implements PractitionerService {
     public Practitioner updatePractitioner(Practitioner practitioner) {
         return practitionerRepository.save(practitioner);
     }
+
+    @Override
+    public List<Practitioner> searchBySpecialtyAndAddressAndOpeningHours(String speciality, String address, String openingHours) {
+        Practitioner practitioner = new Practitioner();
+        practitioner.setSpecialty(speciality);
+        practitioner.setAddress(address);
+        practitioner.setOpeningHours(openingHours);
+        ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll().withIgnoreNullValues().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        Example<Practitioner> example = Example.of(practitioner, exampleMatcher);
+        return practitionerRepository.findAll(example);
+    }
+
+
 }
