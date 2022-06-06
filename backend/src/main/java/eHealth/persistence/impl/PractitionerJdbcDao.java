@@ -1,4 +1,4 @@
-package eHealth.persistence.impl;
+/*package eHealth.persistence.impl;
 
 import eHealth.entity.Practitioner;
 import eHealth.exception.PersistenceException;
@@ -31,10 +31,13 @@ public class PractitionerJdbcDao implements PractitionerDao {
         }
     }
 
+
+
     private Practitioner mapRow(ResultSet result, int rownum) throws SQLException {
         Practitioner practitioner = new Practitioner();
         practitioner.setId(result.getLong("id"));
-        practitioner.setName(result.getString("name"));
+        practitioner.setFirstName(result.getString("name"));
         return practitioner;
     }
 }
+*/

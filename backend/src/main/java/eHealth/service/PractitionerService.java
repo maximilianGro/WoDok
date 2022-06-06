@@ -13,4 +13,9 @@ public interface PractitionerService {
      * @return list of all stored practitioners
      */
     List<Practitioner> allPractitioners();
+
+
+    Practitioner getPractitionerById(Long practitionerId);
+
+    Practitioner createPractitioner(Practitioner practitioner);
 }

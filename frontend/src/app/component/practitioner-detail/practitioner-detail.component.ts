@@ -16,11 +16,16 @@ export class PractitionerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    // this.practitionerService.getOne(id).subscribe(
-    //   practitioner => {
-    //     this.practitioner = practitioner;
-    //   }
-    // )
+    this.practitionerService.getOne(id).subscribe({
+      next: data => {
+        this.practitioner = data;
+        console.log(data);
+      },
+      error: error => {
+        console.error('Error fetching practitioner', error.message);
+        //this.showError('Could not fetch practitioner: ' + error.message);
+      }
+    });
   }
 
 }
