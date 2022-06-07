@@ -30,10 +30,11 @@ public class UserDataGenerator implements DataGenerator{
             LOGGER.debug("users already generated");
         } else {
             LOGGER.debug("generating {} user entries", NUMBER_OF_USERS_TO_GENERATE);
-            User user = new User("email", passwordEncoder.encode("pw"), 5,
-            false, "firstName",  "lastName",  "city",
-                    "zip", "country", "street", "birthday");
-            userRepository.save(user);
+            for (int i = 0; i < NUMBER_OF_USERS_TO_GENERATE; i++) {
+                userRepository.save(new User("email", passwordEncoder.encode("password"), 5,
+                        false, "firstName" + NUMBER_OF_USERS_TO_GENERATE,  "lastName",  "city",
+                        "zip", "country", "street", "birthday"));
+            }
 
         }
     }

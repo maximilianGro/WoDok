@@ -43,6 +43,16 @@ public class Practitioner {
         this.email = email;
     }
 
+    public Practitioner( String firstName, String lastName, String specialty, String openingHours, String address, String phone, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialty = specialty;
+        this.openingHours = openingHours;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
