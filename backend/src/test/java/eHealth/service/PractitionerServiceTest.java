@@ -22,6 +22,6 @@ public class PractitionerServiceTest {
         List<Practitioner> practitioner = practitionerService.allPractitioners();
         assertThat(practitioner.size()).isEqualTo(3);
         assertThat(practitioner.get(0).getId()).isEqualTo(-3);
-        assertThat(practitioner.get(0).getName()).isEqualTo("Dr. Kellner");
+        assertThat(practitioner.get(0).getLastName()).isEqualTo("Dr. Kellner");
     }
 }

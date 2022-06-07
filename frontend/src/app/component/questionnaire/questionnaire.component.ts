@@ -35,7 +35,7 @@ export class QuestionnaireComponent implements OnInit {
       pain:[''],
       pain_date:[''],
       // bodypart: [new Array()]
-      bodypart: this.formBuilder.array([new FormControl()])
+      bodypart: this.formBuilder.array([])
 
     });
 
@@ -44,41 +44,65 @@ export class QuestionnaireComponent implements OnInit {
   svg_elements;
   ngOnInit(): void {
     this.svg_elements = Array.from(document.getElementsByTagName('svg'));
-    console.log(this.svg_elements)
+    // console.log(this.svg_elements)
     let children;
     this.svg_elements.forEach(function (el) {
       children = Array.from(el.childNodes);
       children.forEach( child => {
         if (child.tagName === 'path'){
-          console.log(child.id)
+          // console.log(child.id)
           let newbutton = document.createElement('div')
           newbutton.innerText = child.id
           newbutton.id = child.id + "-btn"
           newbutton.classList.add('btn-prim')
           newbutton.classList.add('btn')
-          console.log(el.id +"-btn")
+          // console.log(el.id +"-btn")
           document.getElementById(el.id + "-btn").appendChild(newbutton)
 
         }
       })
     })
     this.body_elements = document.getElementsByTagName('path');
-    console.log(this.body_elements)
+    // this.body_elements.forEach(function (el){
+    //   el.addEventListener("click", () => {
+    //     if(this.questionnaireForm.controls.bodypart.value.includes(el.id)) {
+    //       let helper = this.questionnaireForm.controls.bodypart.value.filter(val => {
+    //         return val !== el.id
+    //       })
+    //       let length =  this.questionnaireForm.controls.bodypart.value.length;
+    //       for (let j = 0; j < length; j++) {
+    //         this.questionnaireForm.controls.bodypart.value.pop()
+    //       }
+    //       for (let j = 0; j < helper.length; j++) {
+    //         this.questionnaireForm.controls.bodypart.value.push(helper[j])
+    //       }
+    //
+    //     } else {
+    //       this.questionnaireForm.controls.bodypart.value.push(el.id);
+    //     }
+    //
+    //       // console.log(this.questionnaireForm.controls.bodypart.value)
+    //     })
+    // })
     for (let i = 0; i < this.body_elements.length; i++) {
-      // button for each body part
-      // let newbutton = document.createElement('div')
-      // newbutton.innerText = this.body_elements[i].id
-      // newbutton.id = this.body_elements[i].id + "-btn"
-      // newbutton.classList.add('btn-prim')
-      // newbutton.classList.add('btn')
-
-      // document.getElementById('bodypart-areas-btn').appendChild(newbutton)
-      // eventlistener for each body part
       this.body_elements[i].addEventListener("click", () => {
-        if(this.questionnaireForm.controls.bodypart)
-        // this.questionnaireForm.controls.bodypart.push(this.body_elements[i].id) as FormArray;
-        this.questionnaireForm.controls.bodypart =this.body_elements[i].id;
-        console.log(this.questionnaireForm.controls.bodypart)
+        if(this.questionnaireForm.controls.bodypart.value.includes(this.body_elements[i].id)) {
+          let helper = this.questionnaireForm.controls.bodypart.value.filter(val => {
+            return val !== this.body_elements[i].id
+          })
+          let length =  this.questionnaireForm.controls.bodypart.value.length;
+          for (let j = 0; j < length; j++) {
+            this.questionnaireForm.controls.bodypart.value.pop()
+          }
+          for (let j = 0; j < helper.length; j++) {
+            this.questionnaireForm.controls.bodypart.value.push(helper[j])
+          }
+
+        } else {
+          this.questionnaireForm.controls.bodypart.value.push(this.body_elements[i].id);
+        }
+
+        // console.log(this.questionnaireForm.controls.bodypart.value)
       })
     }
   }
