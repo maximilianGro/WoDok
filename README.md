@@ -13,6 +13,9 @@ backend is available under: ```http://localhost:8080```
 database is available under: ```http://localhost:8080/h2-console``` (JDBC URL: ```jdbc:h2:./eHealth```, User Name: ```sa```,
 no password)
 
+start with data \
+```mvn spring-boot:run -Dspring-boot.run.profiles=generateData```
+
 #### frontend
 [all in /frontend]  
 install dependencies: frontend ```npm install```  
