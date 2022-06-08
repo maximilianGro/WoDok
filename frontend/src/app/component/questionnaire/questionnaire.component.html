@@ -30,14 +30,16 @@
         <div class="tab-pane fade  active show" id="v-pills-allg" role="tabpanel" aria-labelledby="v-pills-allg-tab">
           <div class="rectangle">
             <h5>Welches Geschlecht haben Sie?</h5>
-            <input formControlName="gender" type="radio" class="btn-check" value="g_male" name="gender" id="g_male" autocomplete="off">
-            <label class="btn btn-sec" for="g_male">Männlich</label>
+            <div class="btn-goup" role="group">
+              <input formControlName="gender" type="radio" class="btn-check" value="g_male" name="gender" id="g_male" autocomplete="off">
+              <label class="btn btn-outline-secondary me-2" for="g_male">Männlich</label>
 
-            <input formControlName="gender" type="radio" class="btn-check" value="g_female" name="gender" id="g_female" autocomplete="off">
-            <label class="btn btn-sec" for="g_female">Weiblich</label>
+              <input formControlName="gender" type="radio" class="btn-check" value="g_female" name="gender" id="g_female" autocomplete="off">
+              <label class="btn btn-outline-secondary me-2" for="g_female">Weiblich</label>
 
-            <input formControlName="gender" type="radio" class="btn-check" value="g_divers" name="gender" id="g_div" autocomplete="off">
-            <label class="btn btn-sec" for="g_div">Divers</label>
+              <input formControlName="gender" type="radio" class="btn-check" value="g_divers" name="gender" id="g_div" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="g_div">Divers</label>
+            </div>
           </div>
           <div class="rectangle mt-2">
             <h5>Wie alt sind Sie?</h5>
@@ -48,7 +50,10 @@
           <div class="rectangle mt-2">
             <h5>Wo befinden Sie sich?</h5>
             <div >
-              <input class="input-text" type="text" id="location" formControlName="location">
+              <div class="btn-group" role="group" *ngFor="let item of locationInput">
+                <input type="checkbox" class="btn-check" id={{item}} [value]="item" (change)="onCbChange($event, 'location')" />
+                <label  class="btn btn-outline-secondary me-2 mt-2" for={{item}}>{{item}}</label>
+              </div>
             </div>
           </div>
         </div>
@@ -378,14 +383,17 @@
           <div class="rectangle mt-2">
             <h5>Haben Sie schmerzen?</h5>
             <input formControlName="pain" type="radio" class="btn-check" value="pain_yes" name="pain" id="pain_yes" autocomplete="off">
-            <label class="btn btn-sec" for="pain_yes">ja</label>
+            <label class="btn btn-outline-secondary me-2" for="pain_yes">ja</label>
 
             <input formControlName="pain" type="radio" class="btn-check" value="pain_no" name="pain" id="pain_no" autocomplete="off">
-            <label class="btn btn-sec" for="pain_no">nein</label>
+            <label class="btn btn-outline-secondary" for="pain_no">nein</label>
           </div>
           <div class="rectangle mt-2">
             <h5>Wie stark sind die Schmerzen?</h5>
-
+            <div class="btn-group" role="group" *ngFor="let item of painInput">
+              <input formControlName="pain_amount"  type="radio" class="btn-check" [value]="item" id={{item}}  autocomplete="off" >
+              <label  class="btn btn-outline-secondary me-2 mt-2" for={{item}}>{{item}}</label>
+            </div>
           </div>
           <div class="rectangle mt-2">
             <h5>Seit wann haben Sie Schmerzen?</h5>
@@ -396,9 +404,9 @@
           <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
         </div>
       </div>
-        <button id="submit_questionnaire" type="submit" class="example-button prim" style="margin-left: 1em" >
-          Search
-        </button>
+<!--        <button id="submit_questionnaire" type="submit" class="example-button prim" style="margin-left: 1em" >-->
+<!--          Search-->
+<!--        </button>-->
       </form>
     </div>
   </div>

@@ -45,4 +45,8 @@ export class PractitionerService {
     params = params.append("openingHours", time)
     return this.http.get<Practitioner[]>(baseUri + "?" + params);
   }
+
+  questionnaire(body) : Observable<Practitioner[]> {
+    return this.http.post<Practitioner[]>(baseUri, body);
+  }
 }

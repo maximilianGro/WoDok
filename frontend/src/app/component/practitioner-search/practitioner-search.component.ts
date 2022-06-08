@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PractitionerService} from "../../service/practitioner.service";
 import {Practitioner} from "../../dto/practitioner";
+import {EnumLocation} from "../../datatype/enum-location";
+import {EnumPractitioner} from "../../datatype/enum-practitioner";
+import {EnumTime} from "../../datatype/enum-time";
 
 @Component({
   selector: 'app-practitioner-search',
@@ -18,9 +21,9 @@ export class PractitionerSearchComponent implements OnInit {
 
   searchedPract: Practitioner[]
 
-  locationFromDb = ['1070 Wien', '1080 Wien', '1090 Wien', 'address1']
-  practitionerFromDb = ['Zahnarzt', 'Frauenarzt', 'Orthopäde']
-  timeFromDb = ['8-9', '9-10', '10-11']
+  locationFromDb = Object.values(EnumLocation)
+  practitionerFromDb = Object.values(EnumPractitioner)
+  timeFromDb = Object.values(EnumTime)
 
   constructor(private formBuilder: FormBuilder, private practService: PractitionerService) {
     this.searchForm = this.formBuilder.group({
