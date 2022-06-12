@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {PractitionerService} from "../../service/practitioner.service";
+import {Practitioner} from "../../dto/practitioner";
+import {EnumLocation} from "../../datatype/enum-location";
+import {EnumPractitioner} from "../../datatype/enum-practitioner";
+import {EnumTime} from "../../datatype/enum-time";
 
 @Component({
   selector: 'app-practitioner-search',
@@ -14,11 +19,13 @@ export class PractitionerSearchComponent implements OnInit {
     time: new FormControl()
   });
 
-  locationFromDb = ['1070 Wien', '1080 Wien', '1090 Wien']
-  practitionerFromDb = ['Zahnarzt', 'Frauenarzt', 'Orthopäde']
-  timeFromDb = ['8-9', '9-10', '10-11']
+  searchedPract: Practitioner[]
 
-  constructor(private formBuilder: FormBuilder) {
+  locationFromDb = Object.values(EnumLocation)
+  practitionerFromDb = Object.values(EnumPractitioner)
+  timeFromDb = Object.values(EnumTime)
+
+  constructor(private formBuilder: FormBuilder, private practService: PractitionerService) {
     this.searchForm = this.formBuilder.group({
       location: this.formBuilder.array([]),
       practitioner: this.formBuilder.array([]),
@@ -47,7 +54,19 @@ export class PractitionerSearchComponent implements OnInit {
   }
 
   Search() {
-
+    this.practService.search(this.searchForm.controls.practitioner.value,
+      this.searchForm.controls.location.value,
+      this.searchForm.controls.time.value).subscribe(
+      {
+        next: data => {
+          this.searchedPract = data;
+          console.log(data);
+        },
+        error: error => {
+          console.error('Error fetching practitioners', error.message);
+        }
+      }
+    )
   }
 
   removeItem(item, part) {

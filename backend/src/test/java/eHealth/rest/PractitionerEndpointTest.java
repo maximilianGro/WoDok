@@ -52,7 +52,7 @@ public class PractitionerEndpointTest {
         assertThat(practitionerResult).isNotNull();
         assertThat(practitionerResult.size()).isEqualTo(3);
         assertThat(practitionerResult.get(0).id()).isEqualTo(-3);
-        assertThat(practitionerResult.get(0).name()).isEqualTo("Dr. Kellner");
+        assertThat(practitionerResult.get(0).lastName()).isEqualTo("Dr. Kellner");
     }
 
     @Test

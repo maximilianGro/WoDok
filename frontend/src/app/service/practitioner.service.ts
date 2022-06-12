@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from 'src/environments/environment';
@@ -31,5 +31,22 @@ export class PractitionerService {
    */
   getOne(id): Observable<Practitioner> {
     return this.http.get<Practitioner>(baseUri + "/" + id);
+  }
+
+  /**
+   * Get one practitioner by id stored in the system
+   *
+   * @return observable practitioner
+   */
+  search(speciality: string, address: string, time:string): Observable<Practitioner[]> {
+    let params = new HttpParams();
+    params = params.append("speciality",speciality)
+    params = params.append("address",address)
+    params = params.append("openingHours", time)
+    return this.http.get<Practitioner[]>(baseUri + "?" + params);
+  }
+
+  questionnaire(body) : Observable<Practitioner[]> {
+    return this.http.post<Practitioner[]>(baseUri, body);
   }
 }
