@@ -2,6 +2,7 @@ package eHealth.service.impl;
 
 import eHealth.Repository.PractitionerRepository;
 import eHealth.entity.Practitioner;
+import eHealth.entity.Questionnaire;
 import eHealth.persistence.PractitionerDao;
 import eHealth.service.PractitionerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +55,22 @@ public class PractitionerServiceImpl implements PractitionerService {
         ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll().withIgnoreNullValues().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Practitioner> example = Example.of(practitioner, exampleMatcher);
         return practitionerRepository.findAll(example);
+    }
+
+    @Override
+    public List<Practitioner> questionnaire(Questionnaire dtoToEntity) {
+
+        List<Practitioner> foundPractitioner = new ArrayList<>();
+
+        // Fall 1 Gyn
+        if (dtoToEntity.getGender().equals("g_female") && dtoToEntity.getBodypart().contains("Trunk")) {
+            foundPractitioner = practitionerRepository.findBySpecialty("Gynäkologe");
+        } else if (dtoToEntity.getBodypart().contains("HeadNeck") && dtoToEntity.getBodypart().contains("face_mouth_oralcavity") ){
+            foundPractitioner = practitionerRepository.findBySpecialty("Zahnarzt");
+        } else if (dtoToEntity.getNotizen().contains("juckreiz") && (dtoToEntity.getBodypart().contains("Trunk") || dtoToEntity.getBodypart().contains("UpperEx") || dtoToEntity.getBodypart().contains("LowerEx"))) {
+            foundPractitioner = practitionerRepository.findBySpecialty("Dermatologe");
+        }
+        return foundPractitioner;
     }
 
 

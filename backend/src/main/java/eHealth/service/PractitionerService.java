@@ -1,6 +1,7 @@
 package eHealth.service;
 
 import eHealth.entity.Practitioner;
+import eHealth.entity.Questionnaire;
 import org.springframework.beans.PropertyValues;
 
 import java.util.List;
@@ -24,4 +25,5 @@ public interface PractitionerService {
 
     List<Practitioner> searchBySpecialtyAndAddressAndOpeningHours(String speciality, String address, String openingHours);
 
+    List<Practitioner> questionnaire(Questionnaire dtoToEntity);
 }

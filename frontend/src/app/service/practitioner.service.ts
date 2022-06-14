@@ -1,4 +1,4 @@
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from 'src/environments/environment';
@@ -21,7 +21,7 @@ export class PractitionerService {
    * @return observable list of found practitioners.
    */
   getAll(): Observable<Practitioner[]> {
-    return this.http.get<Practitioner[]>(baseUri);
+    return this.http.get<Practitioner[]>(baseUri + "/suche");
   }
 
   /**
@@ -43,10 +43,16 @@ export class PractitionerService {
     params = params.append("speciality",speciality)
     params = params.append("address",address)
     params = params.append("openingHours", time)
-    return this.http.get<Practitioner[]>(baseUri + "?" + params);
+    return this.http.get<Practitioner[]>(baseUri + "/suche?" + params);
   }
 
   questionnaire(body) : Observable<Practitioner[]> {
-    return this.http.post<Practitioner[]>(baseUri, body);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    console.log(body)
+    return this.http.post<Practitioner[]>(baseUri + "/questionnaire", body);
   }
 }

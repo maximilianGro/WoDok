@@ -2,6 +2,8 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PractitionerService} from "../../service/practitioner.service";
 import {EnumLocation} from "../../datatype/enum-location";
+import {QuestionnaireDto} from "../../dto/questionnaireDto";
+import {Practitioner} from "../../dto/practitioner";
 
 function onCbChange(e: any, part: string) {
   const isArray: FormArray = this.questionnaireForm.get(part) as FormArray;
@@ -37,31 +39,40 @@ export class QuestionnaireComponent implements OnInit {
   ]
 
   locationInput = Object.values(EnumLocation)
+  symptomInput = ['Übelkeit','Fieber', 'Schüttelfrost', 'Husten', 'Schnupfen','Gedächtnisverlust']
 
   painInput = Array.from(Array(11).keys())
 
   body_elements;
   test = new Array();
 
+  foundPractitioners: Practitioner[] = []
+
   questionnaireForm = new FormGroup({
       gender: new FormControl(),
       age: new FormControl(),
       location: new FormControl(),
+      notizen: new FormControl(),
+      addtext: new FormControl(),
       pain: new FormControl(),
       pain_amount: new FormControl(),
       pain_date: new FormControl(),
-      bodypart: new FormControl()
+      bodypart: new FormControl(),
+      symptom: new FormControl(),
     })
   constructor(private formBuilder: FormBuilder, private practService: PractitionerService) {
     this.questionnaireForm = this.formBuilder.group({
       gender:[''],
       age:[''],
+      notizen:[''],
+      addtext:[''],
       location:this.formBuilder.array([]),
       pain:[''],
       pain_date:[''],
       pain_amount:[''],
       // bodypart: [new Array()]
-      bodypart: this.formBuilder.array([])
+      bodypart: this.formBuilder.array([]),
+      symptom: this.formBuilder.array([])
 
     });
 
@@ -83,18 +94,6 @@ export class QuestionnaireComponent implements OnInit {
           child.addEventListener("click", () => {
             document.getElementById("input-"+child.id).click()
           })
-          // console.log(child.id)
-          // let newbutton = document.createElement('div')
-          // newbutton.innerText = child.id
-          // newbutton.id = child.id + "-btn"
-          // newbutton.classList.add('btn-outline-secondary')
-          // newbutton.classList.add('btn')
-          // newbutton.classList.add('mt-2')
-          // newbutton.classList.add('me-2')
-          // el.innerHTML += "";
-          // newbutton.for = el
-          // console.log(el.id +"-btn")
-          // document.getElementById(el.id + "-btn").appendChild(newbutton)
           newgroup.innerHTML += "<input type=\"checkbox\" class=\"btn-check\" id=\"input-" + child.id + "\" [value]=\"" + child.id + "\" (change)=\"onCbChange($event, 'bodypart')\" />\n" +
             "                <label  class=\"btn btn-outline-secondary me-2 mt-2\" for=\"input-" + child.id + "\">" + child.id + "</label>\n";
 
@@ -105,27 +104,6 @@ export class QuestionnaireComponent implements OnInit {
       })
     })
     this.body_elements = document.getElementsByTagName('path');
-    // this.body_elements.forEach(function (el){
-    //   el.addEventListener("click", () => {
-    //     if(this.questionnaireForm.controls.bodypart.value.includes(el.id)) {
-    //       let helper = this.questionnaireForm.controls.bodypart.value.filter(val => {
-    //         return val !== el.id
-    //       })
-    //       let length =  this.questionnaireForm.controls.bodypart.value.length;
-    //       for (let j = 0; j < length; j++) {
-    //         this.questionnaireForm.controls.bodypart.value.pop()
-    //       }
-    //       for (let j = 0; j < helper.length; j++) {
-    //         this.questionnaireForm.controls.bodypart.value.push(helper[j])
-    //       }
-    //
-    //     } else {
-    //       this.questionnaireForm.controls.bodypart.value.push(el.id);
-    //     }
-    //
-    //       // console.log(this.questionnaireForm.controls.bodypart.value)
-    //     })
-    // })
     for (let i = 0; i < this.body_elements.length; i++) {
       this.body_elements[i].addEventListener("click", () => {
         if(this.questionnaireForm.controls.bodypart.value.includes(this.body_elements[i].id)) {
@@ -144,12 +122,13 @@ export class QuestionnaireComponent implements OnInit {
           this.questionnaireForm.controls.bodypart.value.push(this.body_elements[i].id);
         }
 
-        console.log(this.questionnaireForm.controls.bodypart.value)
+        // console.log(this.questionnaireForm.controls.bodypart.value)
       })
     }
   }
 
   link = '/fragebogen';
+
 
   onTabClick(e) {
     let links = document.getElementsByClassName('tab-link');
@@ -169,14 +148,24 @@ export class QuestionnaireComponent implements OnInit {
 
   Questionnaire() {
     let formObj = this.questionnaireForm.getRawValue()
-    let body = JSON.stringify(formObj)
-    console.log("test "+this.questionnaireForm.controls.bodypart.value)
-
-    console.log(body)
+    let body = new QuestionnaireDto(
+      this.questionnaireForm.controls.gender.value,
+      this.questionnaireForm.controls.age.value,
+      this.questionnaireForm.controls.notizen.value,
+      this.questionnaireForm.controls.addtext.value,
+      this.questionnaireForm.controls.location.value,
+      this.questionnaireForm.controls.pain.value,
+      this.questionnaireForm.controls.pain_amount.value,
+      this.questionnaireForm.controls.pain_date.value,
+      this.questionnaireForm.controls.bodypart.value,
+      this.questionnaireForm.controls.symptom.value
+      )
     this.practService.questionnaire(body).subscribe(
       {
         next: data => {
+          this.foundPractitioners = data;
           console.log(data);
+          document.getElementById('modalPractitioner').click()
         },
         error: error => {
           console.error('Error fetching practitioners', error.message);

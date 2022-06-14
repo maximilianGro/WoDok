@@ -15,12 +15,15 @@
           <i class="bi bi-lightning-fill"></i>
           Schmerzen
         </a>
-        <a class="tab-link nav-link" (click)="onTabClick('v-pills-settings')" id="v-pills-settings-tab" data-toggle="pill" href="{{link}}#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+        <a class="tab-link nav-link" (click)="onTabClick('v-pills-symptome')" id="v-pills-symptome-tab" data-toggle="pill" href="{{link}}#v-pills-symptome" role="tab" aria-controls="v-pills-symptome" aria-selected="false">
+          <i class="bi bi-question-circle-fill"></i>
+          Symptome
+        </a>
       </div>
       </div>
         <div class="d-flex justify-content-center">
       <div id="btn_before" (click)="previousTab()" class="btn"><i class="bi bi-chevron-left"></i> </div>
-      <div id="btn_search" (click)="Questionnaire()" class="btn">search</div>
+      <div id="btn_search" (click)="Questionnaire()" class="btn"><i class="bi m-2 bi-search"></i>Suche</div>
       <div id="btn_next" (click)="nextTab()" class="btn"><i class="bi bi-chevron-right"></i></div>
     </div>
     </div>
@@ -58,6 +61,12 @@
           </div>
         </div>
         <div class="tab-pane fade" id="v-pills-region" role="tabpanel" aria-labelledby="v-pills-region-tab">
+          <div class="rectangle mt-2">
+            <h5>Notizen?</h5>
+            <div class="">
+              <input class="input-text" type="text" id="notize" formControlName="notizen">
+            </div>
+          </div>
           <div style="width: 250px; height: auto">
             <svg id="bodypart-areas-svg" class="body-areas-svg" width="100%" height="100%" viewBox="0 0 430 600" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 1.5;">
               <desc>Hoverable areas of the body for selection. Copyright Philipp Tschandl</desc>
@@ -397,17 +406,76 @@
           </div>
           <div class="rectangle mt-2">
             <h5>Seit wann haben Sie Schmerzen?</h5>
-            <input formControlName="pain_date" type="text" class="input-text"id="pain_date">
+            <input formControlName="pain_date" type="date" class="input-text"id="pain_date">
           </div>
         </div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-          <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+        <div class="tab-pane fade" id="v-pills-symptome" role="tabpanel" aria-labelledby="v-pills-symptome-tab">
+          <div class="rectangle mt-2">
+            <h5>Haben Sie folgende Symptome?</h5>
+            <div >
+              <div class="btn-group" role="group" *ngFor="let item of symptomInput">
+                <input type="checkbox" class="btn-check" id={{item}} [value]="item" (change)="onCbChange($event, 'symptom')" />
+                <label  class="btn btn-outline-secondary me-2 mt-2" for={{item}}>{{item}}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="rectangle mt-2">
+            <h5>Möchten Sie dem Arzt noch etwas sagen?</h5>
+            <div class="">
+              <input style="height: 100px" class="input-text" type="text" id="addtext" formControlName="addtext">
+            </div>
+          </div>
         </div>
       </div>
 <!--        <button id="submit_questionnaire" type="submit" class="example-button prim" style="margin-left: 1em" >-->
 <!--          Search-->
 <!--        </button>-->
       </form>
+    </div>
+  </div>
+</div>
+
+
+<ng-container *ngIf="foundPractitioners.length== 0">
+  Nothing found
+</ng-container>
+
+
+<!-- Button trigger modal -->
+<!--<ng-container *ngIf="foundPractitioners.length != 0">-->
+  <button id="modalPractitioner" type="button" class="btn btn-outline-secondary d-none"  style="border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ärzte Anzeigen
+  </button>
+<!--</ng-container>-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 1000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ärzte die in Frage kommen: </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let practitioner of foundPractitioners" class="rectangle m-2 ">
+          <div class="row">
+            <div class="text-center col-md-2 col-4"  style="margin:auto">
+              <i class="bi bi-file-earmark-person" style="font-size: 25px"></i>
+            </div>
+            <div class="col-md-4 col-8" style="margin:auto">
+              <div >{{practitioner.firstName}} {{practitioner.lastName}}</div>
+              <div class="fst-italic">{{practitioner.specialty}} </div>
+            </div>
+            <div class="col-md-4 col-8"  style="margin:auto"><i class="bi bi-geo-alt-fill"></i>{{practitioner.address}}</div>
+            <div class="col-md-2 col-4"  style="margin:auto">
+              <a href="/practitioners/detail/{{practitioner.id}}" class="btn btn-prim">Details</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

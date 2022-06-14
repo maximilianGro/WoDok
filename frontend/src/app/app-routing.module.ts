@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'practitioners', pathMatch: 'full'},
   {path: 'login', pathMatch: 'full', component: LoginComponent},
   {path: 'practitioners', component: PractitionerComponent},
-  {path: 'practitioners/:id', component: PractitionerDetailComponent},
+  {path: 'practitioners/detail/:id', component: PractitionerDetailComponent},
   // {path: '**', redirectTo: 'practitioners'},
   {path: 'register', component: RegisterComponent},
   {path: 'fragebogen', component: QuestionnaireComponent},
@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'termin-uebersicht', component: ReminderOverviewComponent},
   {path: 'termin/:id', component: ReminderDetailComponent},
   {path: 'termin/neu', component: ReminderCreateComponent},
-  {path: 'suche', component: PractitionerSearchComponent},
+  {path: 'practitioners/suche', component: PractitionerSearchComponent},
 ];
 
 @NgModule({

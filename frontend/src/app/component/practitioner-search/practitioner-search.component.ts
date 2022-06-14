@@ -34,6 +34,17 @@ export class PractitionerSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let url = new URL(window.location.href.toString())
+    if (url.searchParams.get("speciality") != null) {
+      this.searchForm.controls.practitioner.value.push(url.searchParams.get("speciality"))
+    }
+    if (url.searchParams.get("location") != null) {
+      this.searchForm.controls.location.value.push(url.searchParams.get("location"))
+    }
+    if (url.searchParams.get("time") != null) {
+      this.searchForm.controls.practitioner.value.push(url.searchParams.get("time"))
+    }
+    this.Search()
   }
 
   onCbChange(e, part) {

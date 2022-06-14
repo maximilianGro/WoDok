@@ -13,18 +13,21 @@ export class InfoComponent implements OnInit {
 
   information = [{
     tags: ['weiblich', 'männlich'],
+    href: '/practitioners/suche?',
     title: 'Internistische Vorsorgeuntersuchung',
     subtitle: 'Termin 1x im Jahr empfohlen',
     text: 'Bei der Internistischen Vorsorgeuntersuchung werden die klassischen Risikofaktoren und deren Folgeerkankungen untersucht. Routinemäßig gehören bei Risikopatienten das EKG, ein Belastungs-EKG, der Ultraschall von Herz, Bauch und Halsschlagader sowie eine ausführliche Laboruntersuchung zu diesem Programm.'
   },
   {
     tags: ['weiblich', 'männlich', 'keine Vorerkrankungen', EnumPractitioner.ZAHNARZT],
+    href: '/practitioners/suche?speciality=Zahnarzt',
     title: 'Zahnärztliche Kontrolle',
     subtitle: 'Termin 2x im Jahr empfohlen',
     text: 'Bei den Kontrollen werden digitale Röntgenbilder angefertigt. Zähne und Zahnfleisch sowie die Mundhöhle werden kontrolliert. Die Zahnärztin oder der Zahnarzt informiert Sie, welche zahnärztlichen Maßnahmen nötig sind. Viele Behandlungen können auf Kassenkosten durchgeführt werden. Sind darüber hinaus Versorgungen wie etwa Kronen notwendig, erstellen wir für Sie einen Behandlungsplan mit den entstehenden Kosten. '
   },
   {
     tags: ['weiblich', '20-30 Jahre', '30-40 Jahre', EnumPractitioner.GYN],
+    href: '/practitioners/suche?speciality=Gynäkologe',
     title: 'Gynäkologen ',
     subtitle: 'Termin 1x im Jahr empfohlen',
     text: ' Besonders wichtig sind der PAP- und HPV-Abstrich, denn durch die konsequente Kontrolle konnte in allen westlichen Industriestaaten die Sterblichkeit an Gebärmutterhalskrebs dramatisch reduziert werden. '
