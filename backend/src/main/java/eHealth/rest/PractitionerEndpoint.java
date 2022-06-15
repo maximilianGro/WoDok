@@ -1,17 +1,14 @@
 package eHealth.rest;
 
+import eHealth.dto.PractitionerDto;
 import eHealth.entity.Practitioner;
 import eHealth.mapper.PractitionerMapper;
-import eHealth.dto.PractitionerDto;
 import eHealth.service.PractitionerService;
 import eHealth.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.security.PermitAll;
 import java.lang.invoke.MethodHandles;
@@ -51,14 +48,13 @@ public class PractitionerEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     public PractitionerDto createPractitioner(@RequestBody PractitionerDto practitionerDto) {
         return mapper.entityToDto(this.service.createPractitioner(mapper.dtoToEntity(practitionerDto)));
-
     }
-    @PutMapping (value = "/{practitionerId}")
+
+    @PutMapping(value = "/{practitionerId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public PractitionerDto updatePractitioner(@PathVariable("practitionerId") Long practitionerId, @RequestBody PractitionerDto practitionerDto) {
         Practitioner input = mapper.dtoToEntity(practitionerDto);
         input.setId(practitionerId);
         return mapper.entityToDto(this.service.updatePractitioner(input));
-
     }
 }

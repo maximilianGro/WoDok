@@ -1,7 +1,7 @@
 package eHealth.service;
 
 
-import eHealth.entity.Practitioner;
+//import eHealth.entity.Practitioner;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class PractitionerServiceTest {
 
-    @Autowired
-    PractitionerService practitionerService;
-
-    @Test
-    public void getAllReturnsAllStoredPractitioners() {
-        List<Practitioner> practitioner = practitionerService.allPractitioners();
-        assertThat(practitioner.size()).isEqualTo(3);
-        assertThat(practitioner.get(0).getId()).isEqualTo(-3);
-        assertThat(practitioner.get(0).getName()).isEqualTo("Dr. Kellner");
-    }
+//    @Autowired
+//    PractitionerService practitionerService;
+//
+//    @Test
+//    public void getAllReturnsAllStoredPractitioners() {
+//        List<Practitioner> practitioner = practitionerService.allPractitioners();
+//        assertThat(practitioner.size()).isEqualTo(3);
+//        assertThat(practitioner.get(0).getId()).isEqualTo(-3);
+//        assertThat(practitioner.get(0).getName()).isEqualTo("Dr. Kellner");
+//    }
 }

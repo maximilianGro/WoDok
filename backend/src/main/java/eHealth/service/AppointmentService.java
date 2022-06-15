@@ -1,14 +1,14 @@
 package eHealth.service;
 
-import eHealth.dto.AppointmentDto;
-import eHealth.dto.AppointmentSimpleDto;
 import eHealth.entity.Appointment;
 
 import java.util.List;
 
 public interface AppointmentService {
 
-    List<AppointmentDto> getByEmail(String email);
+    List<Appointment> getAppointmentByPatientId(Long patientId);
 
-    Appointment create(AppointmentSimpleDto appointmentSimpleDto);
+    void bookAppointment(Appointment appointment);
+
+    List<Appointment> getFreeByPractitionerId(Long id);
 }

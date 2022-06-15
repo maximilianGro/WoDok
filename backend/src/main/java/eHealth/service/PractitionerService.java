@@ -10,10 +10,10 @@ import java.util.List;
 public interface PractitionerService {
     /**
      * Lists all practitioners stored in the system.
+     *
      * @return list of all stored practitioners
      */
     List<Practitioner> allPractitioners();
-
 
     Practitioner getPractitionerById(Long practitionerId);
 

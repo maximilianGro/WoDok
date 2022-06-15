@@ -2,18 +2,18 @@
     This is just for checking, that your setup works.
     You can – and should – remove this later
     -->
-<div class="container mt-3" *ngIf="error">
+<div *ngIf="error" class="container mt-3">
   <div class="alert alert-danger" role="alert">
     <h4>Error!</h4> {{ error }}
     <p>Could not load practitioners.</p>
     <p>Something is not quite right. Did you start the backend?</p>
-    <button type="button" (click)="vanishError()" class="close" data-dismiss="alert" aria-label="Close">
+    <button (click)="vanishError()" aria-label="Close" class="close" data-dismiss="alert" type="button">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 </div>
 
-<div class="container mt-3" *ngIf="!error && practitioners">
+<div *ngIf="!error && practitioners" class="container mt-3">
   <div class="alert alert-success" role="alert">
     <h4 class="alert-heading">Well done!</h4>
     <p>Your application is up and running.</p>
@@ -25,7 +25,7 @@
 
 <div class="mt-3">
   <h1>Ärzte in der Nähe
-    <button class="btn btn-light mr-1" (click)="reloadPractitioners()">&#x21bb;</button>
+    <button (click)="reloadPractitioners()" class="btn btn-light mr-1">&#x21bb;</button>
   </h1>
   <div class="d-flex flex-row">
     <button class="btn btn-prim">Facharzt <i class="bi bi-x"></i></button>
@@ -34,28 +34,28 @@
 
   <div *ngFor="let practitioner of practitioners" class="rectangle m-2 ">
     <div class="row">
-      <div class="text-center col-md-2 col-4"  style="margin:auto">
+      <div class="text-center col-md-2 col-4" style="margin:auto">
         <i class="bi bi-file-earmark-person" style="font-size: 25px"></i>
       </div>
       <div class="col-md-4 col-8" style="margin:auto">
-        <div >{{practitioner.firstName}} {{practitioner.lastName}}</div>
+        <div>{{practitioner.firstName}} {{practitioner.lastName}}</div>
         <div class="fst-italic">{{practitioner.specialty}} </div>
       </div>
-      <div class="col-md-4 col-8"  style="margin:auto"><i class="bi bi-geo-alt-fill"></i>{{practitioner.address}}</div>
-      <div class="col-md-2 col-4"  style="margin:auto">
-        <a href="/practitioners/{{practitioner.id}}" class="btn btn-prim">Details</a>
+      <div class="col-md-4 col-8" style="margin:auto"><i class="bi bi-geo-alt-fill"></i>{{practitioner.address}}</div>
+      <div class="col-md-2 col-4" style="margin:auto">
+        <a class="btn btn-prim" href="/practitioners/{{practitioner.id}}">Details</a>
       </div>
     </div>
 
   </div>
-<!--  <table class="table table-hover">-->
-<!--    <thead>-->
-<!--    <th>Name</th>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr *ngFor="let practitioner of practitioners">-->
-<!--      <td>{{practitioner.name}}</td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
+  <!--  <table class="table table-hover">-->
+  <!--    <thead>-->
+  <!--    <th>Name</th>-->
+  <!--    </thead>-->
+  <!--    <tbody>-->
+  <!--    <tr *ngFor="let practitioner of practitioners">-->
+  <!--      <td>{{practitioner.name}}</td>-->
+  <!--    </tr>-->
+  <!--    </tbody>-->
+  <!--  </table>-->
 </div>

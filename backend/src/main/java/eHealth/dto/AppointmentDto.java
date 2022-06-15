@@ -4,42 +4,80 @@ package eHealth.dto;
 import java.time.LocalDateTime;
 
 public class AppointmentDto {
-    UserRegisterDto practitioner;
+    private Long id;
+    private Boolean freeAppointment;
+    private Long practitionerId;
+    private Long patientId;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private String patientDescription;
 
-    UserRegisterDto patient;
-
-    LocalDateTime date;
-
-    public UserRegisterDto getPractitionerId() {
-        return practitioner;
+    public AppointmentDto() {
     }
 
-    public void setPractitioner(UserRegisterDto practitioner) {
-        this.practitioner = practitioner;
+    public AppointmentDto(Long id, Boolean freeAppointment, Long practitionerId, Long patientId, LocalDateTime start, LocalDateTime end, String patientDescription) {
+        this.id = id;
+        this.freeAppointment = freeAppointment;
+        this.practitionerId = practitionerId;
+        this.patientId = patientId;
+        this.start = start;
+        this.end = end;
+        this.patientDescription = patientDescription;
     }
 
-    public UserRegisterDto getPatientId() {
-        return patient;
+    public Long getId() {
+        return id;
     }
 
-    public void setPatient(UserRegisterDto patient) {
-        this.patient = patient;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public Boolean getFreeAppointment() {
+        return freeAppointment;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setFreeAppointment(Boolean freeAppointment) {
+        this.freeAppointment = freeAppointment;
     }
 
-    @Override
-    public String toString() {
-        return "AppointmentDto{" +
-                "practitionerId=" + practitioner +
-                ", patientId=" + patient +
-                ", date=" + date +
-                '}';
+    public Long getPractitionerId() {
+        return practitionerId;
+    }
+
+    public void setPractitionerId(Long practitionerId) {
+        this.practitionerId = practitionerId;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public String getPatientDescription() {
+        return patientDescription;
+    }
+
+    public void setPatientDescription(String patientDescription) {
+        this.patientDescription = patientDescription;
     }
 }

@@ -2,30 +2,32 @@
 <p>anzeigen für...</p>
 <div class="d-flex flex-row">
   <div class="dropdown">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+    <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline-secondary dropdown-toggle"
+            data-bs-toggle="dropdown" id="dropdownMenuButton" type="button">
       Hinzufügen
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a *ngFor="let item of filter" (click)="addToFilter(item)" class="dropdown-item"><span *ngIf="!selected_filter.includes(item)">{{item}}</span></a>
+    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <a (click)="addToFilter(item)" *ngFor="let item of filter" class="dropdown-item"><span
+        *ngIf="!selected_filter.includes(item)">{{item}}</span></a>
     </div>
   </div>
-    <div *ngFor="let item of selected_filter" (click)="removeFromFilter(item)" class="btn btn-prim">{{item}} <i class="bi bi-x"></i></div>
+  <div (click)="removeFromFilter(item)" *ngFor="let item of selected_filter" class="btn btn-prim">{{item}} <i
+    class="bi bi-x"></i></div>
 </div>
 
 <div class="row">
-  <ng-container *ngFor="let item of information" >
-    <div class="col-12 col-md-6" *ngIf="checkFilter(item.tags)">
+  <ng-container *ngFor="let item of information">
+    <div *ngIf="checkFilter(item.tags)" class="col-12 col-md-6">
       <div class="rectangle m-2 p-4">
         <h4>{{item.title}}</h4>
         <h6 class="fst-italic">{{item.subtitle}}</h6>
         <div>{{item.text}}</div>
         <div class="d-flex justify-content-center">
-          <a href="#" class="btn btn-prim">Ärzte finden</a>
+          <a class="btn btn-prim" href="#">Ärzte finden</a>
         </div>
       </div>
     </div>
   </ng-container>
-
 
 
 </div>

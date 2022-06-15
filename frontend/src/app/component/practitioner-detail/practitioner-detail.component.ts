@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PractitionerService} from "../../service/practitioner.service";
 import {Practitioner} from "../../dto/practitioner";
@@ -12,7 +12,8 @@ export class PractitionerDetailComponent implements OnInit {
 
   practitioner: Practitioner;
 
-  constructor(private route: ActivatedRoute, private practitionerService: PractitionerService) { }
+  constructor(private route: ActivatedRoute, private practitionerService: PractitionerService) {
+  }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -27,5 +28,4 @@ export class PractitionerDetailComponent implements OnInit {
       }
     });
   }
-
 }

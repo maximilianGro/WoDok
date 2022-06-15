@@ -6,7 +6,6 @@ import {tap} from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import {environment} from "../../environments/environment";
 import {SimpleUser} from "../dto/simple-user";
-import {Registration} from "../dto/registration";
 
 
 @Injectable({
@@ -14,7 +13,7 @@ import {Registration} from "../dto/registration";
 })
 export class AuthService {
 
-  private backendUrl =  environment.backendUrl;
+  private backendUrl = environment.backendUrl;
 
   private authBaseUri: string = this.backendUrl + '/authentication';
   private registerBaseUri: string = this.backendUrl + '/register';
@@ -49,12 +48,12 @@ export class AuthService {
       );
   }
 
-  setUsername(authRequest: AuthRequest){
+  setUsername(authRequest: AuthRequest) {
     this.username = authRequest.email;
-    localStorage.setItem('username',this.username);
+    localStorage.setItem('username', this.username);
   }
 
-  getusername(){
+  getusername() {
     return localStorage.getItem('username');
   }
 
@@ -69,7 +68,7 @@ export class AuthService {
     return localStorage.getItem('authToken');
   }
 
-  getSmallUserById(username: string): Observable<SimpleUser>{
+  getSmallUserById(username: string): Observable<SimpleUser> {
     return this.httpClient.get<SimpleUser>(environment.backendUrl + '/users' + '/' + username);
   }
 
@@ -89,6 +88,11 @@ export class AuthService {
     return 'UNDEFINED';
   }
 
+  logoutUser() {
+    console.log('Logout');
+    localStorage.removeItem('authToken');
+  }
+
   private setToken(authResponse: string) {
     localStorage.setItem('authToken', authResponse);
   }
@@ -103,11 +107,6 @@ export class AuthService {
     const date = new Date(0);
     date.setUTCSeconds(decoded.exp);
     return date;
-  }
-
-  logoutUser() {
-    console.log('Logout');
-    localStorage.removeItem('authToken');
   }
 
 }

@@ -17,6 +17,10 @@ public interface UserService extends UserDetailsService {
      */
     User findUserByEmail(String email);
 
+    User getUserById(Long id);
+
+    Long getUserIdByEmail(String email);
+
     /**
      * Increase the lockedCounter of a user.
      *

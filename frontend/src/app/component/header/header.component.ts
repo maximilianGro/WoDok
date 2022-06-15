@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 
 @Component({
@@ -10,7 +10,8 @@ export class HeaderComponent implements OnInit {
 
   isCollapsed = document.body.offsetWidth < 992;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {
+  }
 
   ngOnInit() {
   }

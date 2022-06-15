@@ -1,1 +1,21 @@
-<p>reminder-overview works!</p>
+<div [hidden]="!loading" class="spinner-border text-primary" id="loading" role="status">
+</div>
+<div [hidden]="loading">
+  <div [hidden]="!noAppointments">
+    Du hast noch keine Termine vereinbart.
+  </div>
+  <div [hidden]="noAppointments">
+    <table class="table table-striped">
+      <tr>
+        <th scope="col">Datum</th>
+        <th scope="col">Uhrzeit</th>
+        <th scope="col">Arzt/Ärztin</th>
+      </tr>
+      <tr *ngFor=" let appointment of appointments; let i = index">
+        <td>{{appointment.start | date: 'd/L/y'}}</td>
+        <td>{{appointment.start | date: 'H:mm'}} - {{appointment.end | date: 'H:mm'}}</td>
+        <td *ngIf="practitioners[i]">{{practitioners[i].firstName}} {{practitioners[i].lastName}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

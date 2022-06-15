@@ -3,14 +3,13 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Injectable} from "@angular/core";
-import {SimpleUser} from "../dto/simple-user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private backendUrl =  environment.backendUrl;
+  private backendUrl = environment.backendUrl;
 
   private registerBaseUri: string = this.backendUrl + '/users';
 
@@ -25,6 +24,11 @@ export class UserService {
 
   createUser(registerRequest: Registration): Observable<Registration> {
     return this.httpClient.post<Registration>(this.registerBaseUri + '/create', registerRequest);
+  }
+
+  getUserId(email: string): Observable<number> {
+    const uri = this.registerBaseUri + '/' + email;
+    return this.httpClient.get<number>(uri);
   }
 
   /**

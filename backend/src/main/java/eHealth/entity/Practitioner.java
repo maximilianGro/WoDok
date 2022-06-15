@@ -22,7 +22,7 @@ public class Practitioner {
     @Column
     private String email;
 
-    public Practitioner(){
+    public Practitioner() {
 
     }
 

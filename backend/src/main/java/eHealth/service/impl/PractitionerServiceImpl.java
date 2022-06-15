@@ -2,11 +2,8 @@ package eHealth.service.impl;
 
 import eHealth.Repository.PractitionerRepository;
 import eHealth.entity.Practitioner;
-import eHealth.persistence.PractitionerDao;
 import eHealth.service.PractitionerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,0 +1,48 @@
+.book-appointment {
+  background-color: lightgrey;
+  position: fixed;
+  top: 33%;
+  bottom: 33%;
+  height: 33%;
+  width: 66%;
+  left: 15%;
+  right: 15%;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.booked-appointment {
+  background-color: lightgrey;
+  position: fixed;
+  top: 40%;
+  bottom: 40%;
+  height: 20%;
+  width: 50%;
+  left: 25%;
+  right: 25%;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.book-appointment-calendar {
+  -webkit-filter: blur(3px);
+  margin-top: 15px;
+  pointer-events: none;
+}
+
+#calendar {
+  margin: 15px;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  margin: auto;
+}
+
