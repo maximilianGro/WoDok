@@ -1,0 +1,114 @@
+<div [class.book-appointment-calendar]="book">
+  <div class="row text-center" id="calendar">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div
+          (viewDateChange)="closeOpenMonthViewDay()"
+          [(viewDate)]="viewDate"
+          [view]="view"
+          class="btn btn-primary"
+          mwlCalendarPreviousView
+        >
+          &larr;
+        </div>
+        <div
+          [(viewDate)]="viewDate"
+          class="btn btn-outline-secondary"
+          mwlCalendarToday
+        >
+          Heute
+        </div>
+        <div
+          (viewDateChange)="closeOpenMonthViewDay()"
+          [(viewDate)]="viewDate"
+          [view]="view"
+          class="btn btn-primary"
+          mwlCalendarNextView
+        >
+          &rarr;
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'De' }}</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div
+          (click)="setView(calendarView.Month)"
+          [class.active]="view === calendarView.Month"
+          class="btn btn-primary"
+        >
+          Monat
+        </div>
+        <div
+          (click)="setView(calendarView.Week)"
+          [class.active]="view === calendarView.Week"
+          class="btn btn-primary"
+        >
+          Woche
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      (dayClicked)="changeWeek($event.day.date)"
+      *ngSwitchCase="calendarView.Month"
+      [viewDate]="viewDate"
+      [weekStartsOn]="weekStartsOn"
+    >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      (eventClicked)="createNewAppointment($event.event)"
+      *ngSwitchCase="calendarView.Week"
+      [dayEndHour]="23"
+      [dayStartHour]="6"
+      [events]="events"
+      [viewDate]="viewDate"
+      [weekStartsOn]="weekStartsOn"
+    >
+    </mwl-calendar-week-view>
+  </div>
+</div>
+
+<div *ngIf="book" [ngClass]="booked ? 'booked-appointment' : 'book-appointment'">
+  <div [hidden]="booked">
+    <form #bookAppointmentForm="ngForm" (ngSubmit)="bookAppointment()">
+      <div class="modal-header">
+        <h5 class="modal-title">Neuen Termin vereinbaren für {{appointmentToBook.start | date: 'd/L/y'}}
+          von {{appointmentToBook.start | date: 'H:mm'}} bis {{appointmentToBook.end | date: 'H:mm'}}</h5>
+        <button (click)="close()" aria-label="Close" class="btn btn-outline-secondary" type="button">
+          X
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          Dr. {{practitioner.firstName}} {{practitioner.lastName}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div>
+          Kurze Beschreibung deiner derzeitigen Beschwerden und Zusammenfassung deiner Patientengeschichte
+          <textarea #name="ngModel" [(ngModel)]="appointmentToBook.patientDescription" class="form-control"
+                    id="patientDescritpion" name="patientDescription"></textarea>
+        </div>
+        <button class="btn btn-outline-secondary" type="submit">
+          Bestätigen
+        </button>
+      </div>
+    </form>
+  </div>
+  <div [hidden]="!booked">
+    <div class="modal-header">
+      <h5 class="modal-title">Glückwunsch dein Termin wurde gebucht.</h5>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li><a class="btn btn-outline-secondary" routerLink="/termin-uebersicht">Zu deinen Terminen</a></li>
+        <li><a class="btn btn-outline-secondary" routerLink="/">Startseite</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

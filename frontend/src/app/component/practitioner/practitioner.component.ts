@@ -14,7 +14,8 @@ export class PractitionerComponent implements OnInit {
 
   constructor(
     private service: PractitionerService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.reloadPractitioners();

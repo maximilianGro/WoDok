@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PractitionerService} from "../../service/practitioner.service";
 import {Practitioner} from "../../dto/practitioner";
@@ -85,7 +85,7 @@ export class PractitionerSearchComponent implements OnInit {
         return inside !== item
       }
     )
-    let length =  part.value.length;
+    let length = part.value.length;
     for (let j = 0; j < length; j++) {
       part.value.pop()
     }

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PractitionerComponent} from './component/practitioner/practitioner.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PractitionerComponent} from './component/practitioner/practitioner.component';
 import {QuestionnaireComponent} from "./component/questionnaire/questionnaire.component";
 import {LoginComponent} from "./component/login/login.component";
 import {RegisterComponent} from "./component/register/register.component";
@@ -10,6 +10,7 @@ import {ReminderOverviewComponent} from "./component/reminder-overview/reminder-
 import {ReminderDetailComponent} from "./component/reminder-detail/reminder-detail.component";
 import {ReminderCreateComponent} from "./component/reminder-create/reminder-create.component";
 import {PractitionerSearchComponent} from "./component/practitioner-search/practitioner-search.component";
+import {PractitionerCalendarComponent} from "./component/practitioner-calendar/practitioner-calendar.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'practitioners', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'practitioners', component: PractitionerComponent},
   {path: 'practitioners/detail/:id', component: PractitionerDetailComponent},
   // {path: '**', redirectTo: 'practitioners'},
+  {path: 'practitioners/:id/calendar', component: PractitionerCalendarComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'fragebogen', component: QuestionnaireComponent},
   {path: 'infos', component: InfoComponent},
@@ -30,4 +32,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

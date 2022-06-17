@@ -2,63 +2,63 @@
 
   <div class="d-flex flex-column align-items-center">
     <div class="d-flex align-items-center p-3">
-      <img class="m-2" alt="WoDokLogo" src="assets/img/doctors.png" height="100px" width="auto">
+      <img alt="WoDokLogo" class="m-2" height="100px" src="assets/img/doctors.png" width="auto">
       <a href="/" style="font-size: 2.5rem; color: black; text-decoration: none">WoDok</a>
     </div>
     <div class="d-flex rectangle round-corner flex-column align-items-center mx-auto">
 
       <h3 class="mx-auto">Register</h3>
-      <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="d-flex flex-column align-items-center">
+      <form (ngSubmit)="registerUser()" [formGroup]="registerForm" class="d-flex flex-column align-items-center">
         <table class="example-full-width">
           <tr>
             <td>
               <label for="vorname">Vorname</label><br>
-              <input formControlName="vorname" id="vorname" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="vorname" id="vorname" type="text">
             </td>
             <td>
               <label for="nachname">Nachname</label><br>
-              <input formControlName="nachname" id="nachname" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="nachname" id="nachname" type="text">
             </td>
           </tr>
           <tr>
             <td>
               <label for="email">Email</label><br>
-              <input formControlName="email" id="email" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="email" id="email" type="text">
             </td>
             <td>
               <label for="geburtstag">Geburtstag</label><br>
-              <input formControlName="geburtstag" id="geburtstag" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="geburtstag" id="geburtstag" type="text">
             </td>
           </tr>
           <tr>
             <td>
               <label for="geburtstag">Street</label><br>
-              <input formControlName="street" id="street" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="street" id="street" type="text">
             </td>
             <td>
               <label for="geburtstag">City</label><br>
-              <input formControlName="city" id="city" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="city" id="city" type="text">
             </td>
           </tr>
           <tr>
             <td>
               <label for="geburtstag">ZIP</label><br>
-              <input formControlName="zip" id="zip" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="zip" id="zip" type="text">
             </td>
             <td>
               <label for="geburtstag">Country</label><br>
-              <input formControlName="country" id="country" class="rectangle bg-white" type="text">
+              <input class="rectangle bg-white" formControlName="country" id="country" type="text">
             </td>
           </tr>
         </table>
-          <div style="">
-            <label for="password">Passwort</label><br>
-            <input formControlName="password" id="password" class="rectangle bg-white" type="password">
-          </div>
+        <div style="">
+          <label for="password">Passwort</label><br>
+          <input class="rectangle bg-white" formControlName="password" id="password" type="password">
+        </div>
 
-          <div>
-            <button type="submit" class="mt-2 btn btn-outline-secondary">Registrieren</button>
-          </div>
+        <div>
+          <button class="mt-2 btn btn-outline-secondary" type="submit">Registrieren</button>
+        </div>
 
       </form>
 
@@ -68,7 +68,7 @@
 
   <div *ngIf="error" class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Authentication problems!</strong> {{ errorMessage }}
-    <button type="button" (click)="vanishError()" class="close" data-dismiss="alert" aria-label="Close">
+    <button (click)="vanishError()" aria-label="Close" class="close" data-dismiss="alert" type="button">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

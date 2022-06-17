@@ -104,4 +104,18 @@ public class UserService implements eHealth.service.UserService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User getUserById(Long id) {
+        User user = userRepository.findUserById(id);
+        if (user == null) {
+            throw new NotFoundException("Could not find user with id " + id);
+        }
+        return user;
+    }
+
+    @Override
+    public Long getUserIdByEmail(String email) {
+        return userRepository.findUserByEmail(email).getId();
+    }
 }

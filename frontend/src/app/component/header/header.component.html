@@ -1,14 +1,15 @@
 <div class="prim">
   <nav class="navbar navbar-expand-lg wodok py-4">
-    <img class="m-2" alt="WoDokLogo" src="assets/img/doctors.png" height="50px" width="auto">
-    <a class="navbar-brand text-black" style="font-size: 30px" routerLink="/">WoDok</a>
+    <img alt="WoDokLogo" class="m-2" height="50px" src="assets/img/doctors.png" width="auto">
+    <a class="navbar-brand text-black" routerLink="/" style="font-size: 30px">WoDok</a>
     <div class="dropstart" style="margin-left: auto;">
-      <button class="btn btn-prim dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+      <button aria-expanded="false" aria-haspopup="true" class="btn btn-prim dropdown-toggle" data-bs-toggle="dropdown"
+              id="dropdownMenuButton" type="button">
         <i class="bi bi-person-fill p-2" style="font-size: 25px"></i>
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a *ngIf="authService.isLoggedIn()" href="#" (click)="authService.logoutUser()" class="dropdown-item">Logout</a>
-        <a *ngIf="!authService.isLoggedIn()" href="/login" class="dropdown-item">Login</a>
+      <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+        <a (click)="authService.logoutUser()" *ngIf="authService.isLoggedIn()" class="dropdown-item" href="#">Logout</a>
+        <a *ngIf="!authService.isLoggedIn()" class="dropdown-item" href="/login">Login</a>
         <div *ngIf="authService.isLoggedIn()" class="dropdown-item">{{authService.getusername()}}</div>
       </div>
     </div>
@@ -16,7 +17,7 @@
   </nav>
 </div>
 <nav>
-  <div class="sec" id="navbarToggle" [ngbCollapse]="isCollapsed">
+  <div [ngbCollapse]="isCollapsed" class="sec" id="navbarToggle">
     <ul class="nav mt-2 mt-lg-0 wodok">
       <li class="nav-item ">
         <a class="nav-link" routerLink="/infos">Informationen</a>

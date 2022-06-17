@@ -35,5 +35,8 @@ build/
 ###log files###
 /log/
 
-### database##
+### database ###
 **.db
+
+###testDat ###
+testData.sql

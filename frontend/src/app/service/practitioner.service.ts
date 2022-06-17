@@ -13,7 +13,8 @@ export class PractitionerService {
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+  }
 
   /**
    * Get all practitioners stored in the system

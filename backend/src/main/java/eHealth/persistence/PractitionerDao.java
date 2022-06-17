@@ -11,6 +11,7 @@ import java.util.List;
 public interface PractitionerDao {
     /**
      * Get all practitioners stored in the persistent data store.
+     *
      * @return a list of all stored practitioners
      */
     List<Practitioner> getAll();

@@ -2,25 +2,33 @@ package eHealth.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
+@Table(name = "appointment_table")
 @Entity
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "patientId")
-    private User practitioner;
+    @Column(nullable = false)
+    private Boolean freeAppointment;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "practitionerId")
+    private Practitioner practitioner;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patientId")
     private User patient;
 
-    //@Column(nullable = false)
-    private LocalDateTime date;
+    @Column(nullable = false)
+    private LocalDateTime start;
+
+    @Column(nullable = false)
+    private LocalDateTime end;
+
+    @Column
+    private String patientDescription;
 
     public Long getId() {
         return id;
@@ -30,11 +38,19 @@ public class Appointment {
         this.id = id;
     }
 
-    public User getPractitioner() {
+    public Boolean getFreeAppointment() {
+        return freeAppointment;
+    }
+
+    public void setFreeAppointment(Boolean freeAppointment) {
+        this.freeAppointment = freeAppointment;
+    }
+
+    public Practitioner getPractitioner() {
         return practitioner;
     }
 
-    public void setPractitioner(User practitioner) {
+    public void setPractitioner(Practitioner practitioner) {
         this.practitioner = practitioner;
     }
 
@@ -46,21 +62,27 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getStart() {
+        return start;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setStart(LocalDateTime start) {
+        this.start = start;
     }
 
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "id=" + id +
-                ", practitioner=" + practitioner.getEmail() +
-                ", patient=" + patient.getEmail() +
-                ", date=" + date +
-                '}';
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public String getPatientDescription() {
+        return patientDescription;
+    }
+
+    public void setPatientDescription(String patientDescription) {
+        this.patientDescription = patientDescription;
     }
 }

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 .wodok {
   max-width: 1000px !important;
@@ -7,40 +8,43 @@
   margin-right: auto;
 }
 
-.prim{
+.prim {
   background-color: #AFE1DE;
 }
 
-.sec{
+.sec {
   background-color: #C4C4C4;
 }
 
-.nav-link  {
+.nav-link {
   color: black !important;
 }
 
-.round-corner{
+.round-corner {
   border-radius: 10px;
 }
 
-.rectangle{
+.rectangle {
   border-radius: 10px;
   border: #639492 solid 3px;
   background-color: #EBFFFF;
   padding: 10px;
 }
+
 .input-text {
   border-radius: 10px;
   border: white solid 3px;
   background-color: white;
   padding: 5px;
 }
-.btn-prim{
+
+.btn-prim {
   border-radius: 10px;
   background-color: #639492;
   margin: 10px;
   color: white;
 }
-h1{
+
+h1 {
   font-size: 2rem !important;
 }

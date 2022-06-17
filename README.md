@@ -10,7 +10,7 @@ start: ```mvn spring-boot:run```
 compile: ```mvn clean package```  
 test data + start: compile + ```java -Dspring.profiles.active=datagen -jar target/Gruppe8-0.0.1-SNAPSHOT.jar```  
 backend is available under: ```http://localhost:8080```  
-database is available under: ```http://localhost:8080/h2-console``` (JDBC URL: ```jdbc:h2:./eHealth```, User Name: ```sa```,
+database is available under: ```http://localhost:8080/h2-console``` (JDBC URL: ```jdbc:h2:file:./database/db```, User Name: ```sa```,
 no password)
 
 start with data \

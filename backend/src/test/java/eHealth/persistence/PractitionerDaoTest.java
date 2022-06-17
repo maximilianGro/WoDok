@@ -13,14 +13,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class PractitionerDaoTest {
 
-    @Autowired
-    PractitionerDao practitionerDao;
-
-    @Test
-    public void getAllReturnsAllStoredPractitioners() {
-        List<Practitioner> practitioners = practitionerDao.getAll();
-        assertThat(practitioners.size()).isEqualTo(3);
-        assertThat(practitioners.get(0).getId()).isEqualTo(-3);
-        assertThat(practitioners.get(0).getFirstName()).isEqualTo("Dr. Kellner");
-    }
+//    @Autowired
+//    PractitionerDao practitionerDao;
+//
+//    @Test
+//    public void getAllReturnsAllStoredPractitioners() {
+//        List<Practitioner> practitioners = practitionerDao.getAll();
+//        assertThat(practitioners.size()).isEqualTo(3);
+//        assertThat(practitioners.get(0).getId()).isEqualTo(-3);
+//        assertThat(practitioners.get(0).getFirstName()).isEqualTo("Dr. Kellner");
+//    }
 }

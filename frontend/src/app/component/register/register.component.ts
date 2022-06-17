@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
@@ -60,16 +60,16 @@ export class RegisterComponent implements OnInit {
       //   }
       // );
       const registerRequest = new Registration(
-          this.registerForm.controls.email.value,
-          this.registerForm.controls.password.value,
-          false,
-          this.registerForm.controls.vorname.value,
-          this.registerForm.controls.nachname.value,
-          this.registerForm.controls.street.value,
+        this.registerForm.controls.email.value,
+        this.registerForm.controls.password.value,
+        false,
+        this.registerForm.controls.vorname.value,
+        this.registerForm.controls.nachname.value,
+        this.registerForm.controls.street.value,
         this.registerForm.controls.zip.value,
         this.registerForm.controls.city.value,
         this.registerForm.controls.country.value,
-          this.registerForm.controls.geburtstag.value);
+        this.registerForm.controls.geburtstag.value);
 
       this.userService.createUser(registerRequest).subscribe({
         next: () => {
