@@ -26,7 +26,7 @@ public class UserDataGenerator implements DataGenerator{
 
     @Override
     public void generate() {
-        if (userRepository.findAll().size() < 1) {
+        if (userRepository.findAll().size() > 0) {
             LOGGER.debug("users already generated");
         } else {
             LOGGER.debug("generating {} user entries", NUMBER_OF_USERS_TO_GENERATE);

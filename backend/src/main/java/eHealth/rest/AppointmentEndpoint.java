@@ -1,6 +1,8 @@
 package eHealth.rest;
 
 import eHealth.dto.AppointmentDto;
+import eHealth.dto.QueueDto;
+import eHealth.dto.UserRegisterDto;
 import eHealth.mapper.AppointmentMapper;
 import eHealth.service.AppointmentService;
 import org.slf4j.Logger;
@@ -47,4 +49,15 @@ public class AppointmentEndpoint {
         service.bookAppointment(mapper.dtoToEntity(appointmentDto));
         return true;
     }
+
+    @PostMapping("/queue")
+    @ResponseStatus(HttpStatus.CREATED)
+    public boolean addInQueue(@RequestBody QueueDto queueDto) {
+        LOGGER.info("POST:" + BASE_URL + "/" + " " + queueDto);
+        service.addInQueue(queueDto);
+        return true;
+    }
+
+//    @DeleteMapping("/queue")
+//    @ResponseStatus
 }

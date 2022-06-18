@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit,} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild,} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {isSameDay, isSameMonth,} from 'date-fns';
 import {CalendarEvent, CalendarView, DAYS_OF_WEEK,} from 'angular-calendar';
 import {AppointmentService} from "../../service/appointment.service";
@@ -8,6 +8,7 @@ import {Practitioner} from "../../dto/practitioner";
 import {PractitionerService} from "../../service/practitioner.service";
 import {MyEvent} from '../../entity/MyEvent';
 import {UserService} from "../../service/user.service";
+import {Queue} from "../../dto/queue";
 
 @Component({
   selector: 'app-practitioner-calendar',
@@ -15,6 +16,7 @@ import {UserService} from "../../service/user.service";
   styleUrls: ['./practitioner-calendar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class PractitionerCalendarComponent implements OnInit {
   activeDayIsOpen = true;
   booked = false;
@@ -30,6 +32,7 @@ export class PractitionerCalendarComponent implements OnInit {
   userId: number;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private appointmentService: AppointmentService,
               private practitionerService: PractitionerService,
               private userService: UserService
@@ -126,10 +129,28 @@ export class PractitionerCalendarComponent implements OnInit {
     this.appointmentToBook = null;
   }
 
+  warteschlange() {
+    const queue: Queue = {
+      userId: this.userId, practitionerId: this.practitioner.id
+    };
+    console.log(queue);
+    this.appointmentService.addToQueue(queue).subscribe({
+      next: () => {
+        window.alert('Erfolgreich in die Warteschlange hinzugefügt');
+        this.router.navigate(['/']);
+      },
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      error: (error) => {
+        window.alert('Fehler bei Hinzufügen in die Warteschlange ' + error.error.message);
+      }
+    });
+  }
+
   loadUserId() {
     this.userService.getUserId(window.localStorage.getItem('username')).subscribe({
       next: id => {
         this.userId = id;
+        console.log(id);
       }
     });
   }
