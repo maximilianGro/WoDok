@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PractitionerService} from "../../service/practitioner.service";
 import {Practitioner} from "../../dto/practitioner";
+import {AuthService} from "../../service/auth.service";
+import {AppointmentService} from "../../service/appointment.service";
 
 @Component({
   selector: 'app-practitioner-detail',
@@ -12,7 +14,8 @@ export class PractitionerDetailComponent implements OnInit {
 
   practitioner: Practitioner;
 
-  constructor(private route: ActivatedRoute, private practitionerService: PractitionerService) {
+  constructor(private route: ActivatedRoute, private practitionerService: PractitionerService, private authService: AuthService,
+              private appointmentService: AppointmentService) {
   }
 
   ngOnInit(): void {

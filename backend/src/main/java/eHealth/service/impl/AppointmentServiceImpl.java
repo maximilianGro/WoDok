@@ -27,12 +27,23 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final PractitionerService practitionerService;
     private final UserService userService;
     private final QueueRepository queueRepository;
+    private final EmailService emailService;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, PractitionerService practitionerService, UserService userService, QueueRepository queueRepository) {
+    public AppointmentServiceImpl(EmailService emailService, AppointmentRepository appointmentRepository, PractitionerService practitionerService, UserService userService, QueueRepository queueRepository) {
+        this.emailService = emailService;
         this.appointmentRepository = appointmentRepository;
         this.practitionerService = practitionerService;
         this.userService = userService;
         this.queueRepository = queueRepository;
+    }
+
+    @Override
+    public Appointment getAppointmentById(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findAppointmentById(appointmentId);
+        if (appointment == null) {
+            throw new NotFoundException("Could not find appointments for patient with id " + appointmentId);
+        }
+        return appointment;
     }
 
     @Override
@@ -72,5 +83,38 @@ public class AppointmentServiceImpl implements AppointmentService {
         queue.setTimeStamp(LocalDateTime.now());
 
         queueRepository.save(queue);
+    }
+
+    @Override
+    public void deleteAll(Long practitionerId) {
+        Practitioner practitioner = practitionerService.getPractitionerById(practitionerId);
+        List<Appointment> appointments = appointmentRepository.getByPractitioner(practitioner);
+        if (appointments.isEmpty()) {
+            LOGGER.info("Keine Appointments gefunden");
+            return;
+        }
+        Appointment appointmentToDelete = appointments.get(0);
+        appointmentToDelete.setPatient(null);
+        appointmentRepository.save(appointmentToDelete);
+        List<Queue> queues = queueRepository.getQueuesByPractitioner(practitioner);
+
+        if (queues.isEmpty()) {
+            LOGGER.info("Gibt keine Warteschlange zu diesem Practitioner");
+        } else {
+            User user = queues.get(0).getUser();
+            LocalDateTime date = queues.get(0).getTimeStamp();
+            for (Queue q: queues) {
+                if (q.getTimeStamp().isAfter(date)) {
+                    date = q.getTimeStamp();
+                    user = q.getUser();
+                }
+            }
+            String text = "Lieber WoDok Nutzer, \n \nEs bei einem Arzt wo Sie sich in die Warteschlange eingetragen ein Platz frei geworden.\nUm diesen zu bestätigen, klicken sie bitte auf folgenden Link: \n \n";
+            text = text + "http://localhost:4200/appointment/bestaetigung/" + appointmentToDelete.getId();
+            text = text + "\nSie haben 15 minuten, um den Termin zu bestätigen.";
+            text = text + "\n\n\nLiebe Grüße,\nIhr WoDok Team";
+            emailService.sendEmail(user.getEmail(), "Freier Termin aus Warteschlange", text);
+        }
+
     }
 }

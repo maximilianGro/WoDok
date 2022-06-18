@@ -1,6 +1,7 @@
 package eHealth.Repository;
 
 import eHealth.entity.Appointment;
+import eHealth.entity.Practitioner;
 import eHealth.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,5 +28,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query("UPDATE Appointment a SET a.freeAppointment = FALSE, a.patient = :patient, a.patientDescription = :patientDescription WHERE a.id = :id")
     int bookAppointment(@Param("id") Long id, @Param("patient") User patient, @Param("patientDescription") String patientDescription);
 
+    void deleteAllByPractitioner(Practitioner practitioner);
 
+    List<Appointment> getByPractitioner(Practitioner practitioner);
 }

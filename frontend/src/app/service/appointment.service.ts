@@ -18,6 +18,11 @@ export class AppointmentService {
   ) {
   }
 
+  getAppointmentById(id): Observable<Appointment> {
+    const uri = baseUri + '/byAppointment/' + id;
+    return this.http.get<Appointment>(uri);
+  }
+
   getAppointmentsByPatientId(id): Observable<Appointment[]> {
     const uri = baseUri + '/' + id;
     return this.http.get<Appointment[]>(uri);
@@ -36,5 +41,10 @@ export class AppointmentService {
   addToQueue(queue: Queue): Observable<boolean> {
     const uri = baseUri + '/queue';
     return this.http.post<boolean>(uri, queue);
+  }
+
+  deleteAll(practitionerId: number) {
+    const uri = baseUri + practitionerId;
+    return this.http.delete<boolean>(uri);
   }
 }
