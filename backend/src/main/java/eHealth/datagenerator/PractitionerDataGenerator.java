@@ -4,27 +4,28 @@ import eHealth.Repository.PractitionerRepository;
 import eHealth.entity.Practitioner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.lang.invoke.MethodHandles;
 
-@Profile("generateData")
+//@Profile("generateData")
 @Component
 public class PractitionerDataGenerator implements DataGenerator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private final PractitionerRepository practitionerRepository;
+    private final AppointmentDataGenerator appointmentDataGenerator;
 
-    public PractitionerDataGenerator(PractitionerRepository practitionerRepository) {
+    public PractitionerDataGenerator(PractitionerRepository practitionerRepository, AppointmentDataGenerator appointmentDataGenerator) {
         this.practitionerRepository = practitionerRepository;
+        this.appointmentDataGenerator = appointmentDataGenerator;
     }
 
     @Override
     @PostConstruct
     public void generate() {
-    LOGGER.debug("Generating practitioners...");
+    LOGGER.info("Generating practitioners...");
             practitionerRepository.deleteAll();
             practitionerRepository.flush();
             practitionerRepository.save(new Practitioner("Dr. Maria",
@@ -215,6 +216,6 @@ public class PractitionerDataGenerator implements DataGenerator {
         practitionerRepository.save(new Practitioner("Dr. Lisa",
                 "Prenner", "Kardiologe",
                 "Mo-Mi 10:00-13:00, Mi-Fr 17:00-19:00", "Lehargasse 23/3, 1060 Wien", "066034634624", "drprenner@ordination.com"));
-
+    appointmentDataGenerator.generate();
     }
 }

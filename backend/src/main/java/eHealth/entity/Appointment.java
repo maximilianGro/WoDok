@@ -30,6 +30,18 @@ public class Appointment {
     @Column
     private String patientDescription;
 
+    public Appointment() {
+    }
+
+    public Appointment(Boolean freeAppointment, Practitioner practitioner, User patient, LocalDateTime start, LocalDateTime end, String patientDescription) {
+        this.freeAppointment = freeAppointment;
+        this.practitioner = practitioner;
+        this.patient = patient;
+        this.start = start;
+        this.end = end;
+        this.patientDescription = patientDescription;
+    }
+
     public Long getId() {
         return id;
     }

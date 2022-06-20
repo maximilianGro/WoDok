@@ -27,5 +27,4 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query("UPDATE Appointment a SET a.freeAppointment = FALSE, a.patient = :patient, a.patientDescription = :patientDescription WHERE a.id = :id")
     int bookAppointment(@Param("id") Long id, @Param("patient") User patient, @Param("patientDescription") String patientDescription);
 
-
 }
