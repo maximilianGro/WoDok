@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.lang.invoke.MethodHandles;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -86,6 +87,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public void deleteAll(Long practitionerId) {
         Practitioner practitioner = practitionerService.getPractitionerById(practitionerId);
         List<Appointment> appointments = appointmentRepository.getByPractitioner(practitioner);
@@ -94,8 +96,7 @@ public class AppointmentServiceImpl implements AppointmentService {
             return;
         }
         Appointment appointmentToDelete = appointments.get(0);
-        appointmentToDelete.setPatient(null);
-        appointmentRepository.save(appointmentToDelete);
+
         List<Queue> queues = queueRepository.getQueuesByPractitioner(practitioner);
 
         if (queues.isEmpty()) {
@@ -103,10 +104,12 @@ public class AppointmentServiceImpl implements AppointmentService {
         } else {
             User user = queues.get(0).getUser();
             LocalDateTime date = queues.get(0).getTimeStamp();
+            Queue queue = new Queue();
             for (Queue q: queues) {
                 if (q.getTimeStamp().isAfter(date)) {
                     date = q.getTimeStamp();
                     user = q.getUser();
+                    queue = q;
                 }
             }
             String text = "Lieber WoDok Nutzer, \n \nEs bei einem Arzt wo Sie sich in die Warteschlange eingetragen ein Platz frei geworden.\nUm diesen zu bestätigen, klicken sie bitte auf folgenden Link: \n \n";
@@ -114,6 +117,12 @@ public class AppointmentServiceImpl implements AppointmentService {
             text = text + "\nSie haben 15 minuten, um den Termin zu bestätigen.";
             text = text + "\n\n\nLiebe Grüße,\nIhr WoDok Team";
             emailService.sendEmail(user.getEmail(), "Freier Termin aus Warteschlange", text);
+
+            appointmentToDelete.setPatient(user);
+            appointmentRepository.save(appointmentToDelete);
+
+            queueRepository.delete(queue);
+            //todo wird hier noch nicht gelöscht
         }
 
     }

@@ -7,16 +7,16 @@
     </div>
     <div class="d-flex rectangle round-corner flex-column align-items-center mx-auto">
       <h3 class="mx-auto">Bestätigung</h3>
-      <table>
+      <table style="width:200px">
         <tr>
-          <th>Datum</th>
-          <th>Von</th>
-          <th>Bis</th>
+          <th style="padding-right:20px">Datum</th>
+          <th style="padding-right:20px" style="width:200px">Von</th>
+          <th style="padding-right:20px" style="width:200px">Bis</th>
         </tr>
         <tr>
-          <td>{{appointment.start.getDate()}}</td>
-          <td>{{appointment.start.getTime()}}</td>
-          <td>{{appointment.end.getTime()}}</td>
+          <td style="padding-right:20px">{{appointment.start.toLocaleDateString()}}</td>
+          <td style="padding-right:20px">{{appointment.start.toLocaleTimeString()}}</td>
+          <td style="padding-right:20px">{{appointment.end.toLocaleTimeString()}}</td>
         </tr>
       </table>
       <button (click)="bestaetigung()" class="mt-2 btn btn-outline-secondary" type="submit">Bestätigen</button>

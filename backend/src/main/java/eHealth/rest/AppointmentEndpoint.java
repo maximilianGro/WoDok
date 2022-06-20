@@ -68,9 +68,8 @@ public class AppointmentEndpoint {
         return true;
     }
 
-    @PermitAll
     @DeleteMapping("/{practitionerId}")
-    public void deleteAll(@PathVariable Long practitionerId) {
+    public boolean deleteAll(@PathVariable Long practitionerId) {
         LOGGER.info("DELETE " + BASE_URL + "/{}", practitionerId);
         try {
             this.service.deleteAll(practitionerId);
@@ -78,6 +77,7 @@ public class AppointmentEndpoint {
             LOGGER.error(e.getMessage(), e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not delete all: " + e.getLocalizedMessage(), e);
         }
+        return true;
     }
 
 //    @DeleteMapping("/queue")

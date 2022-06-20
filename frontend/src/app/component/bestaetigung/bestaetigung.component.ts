@@ -19,6 +19,7 @@ export class BestaetigungComponent implements OnInit {
       next: data => {
         this.appointment = data;
         console.log(data);
+        this.formatDate();
       },
       error: error => {
         console.error('Error fetching appointment', error.message);
@@ -27,9 +28,22 @@ export class BestaetigungComponent implements OnInit {
     });
   }
 
+  formatDate(): void {
+    this.appointment.start = new Date(this.appointment.start);
+    this.appointment.end = new Date(this.appointment.end);
+  }
+
   bestaetigung() {
     if (this.appointment != null) {
-      this.appointmentService.bookAppointment(this.appointment)
+      this.appointmentService.bookAppointment(this.appointment).subscribe({
+        next: () => {
+          window.alert('Der Termin wurde gebucht');
+        },
+        error: error => {
+          console.error('Termin konnte nicht gebucht werden', error.message);
+          //this.showError('Could not fetch practitioner: ' + error.message);
+        }
+      });
     } else {
       console.error('Fehler');
     }

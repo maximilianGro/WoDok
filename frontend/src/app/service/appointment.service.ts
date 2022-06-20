@@ -43,8 +43,9 @@ export class AppointmentService {
     return this.http.post<boolean>(uri, queue);
   }
 
-  deleteAll(practitionerId: number) {
-    const uri = baseUri + practitionerId;
+  deleteAll(practitionerId: number): Observable<boolean> {
+    const uri = baseUri + '/' + practitionerId;
+    console.log(uri);
     return this.http.delete<boolean>(uri);
   }
 }

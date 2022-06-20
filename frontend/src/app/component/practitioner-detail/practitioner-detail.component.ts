@@ -31,4 +31,15 @@ export class PractitionerDetailComponent implements OnInit {
       }
     });
   }
+
+  delete() {
+    this.appointmentService.deleteAll(this.practitioner.id).subscribe({
+      next: () => {
+        window.alert('Successfully deleted the appointment');
+      },
+      error: (error) => {
+        window.alert('Error during deleting appointment: ' + error.error.message);
+      }
+    });
+  }
 }

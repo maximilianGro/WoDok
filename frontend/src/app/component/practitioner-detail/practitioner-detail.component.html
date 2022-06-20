@@ -5,7 +5,7 @@
   </div>
   <div>
     <button class="btn btn-prim">Termin vereinbaren</button>
-    <button (click)="appointmentService.deleteAll(practitioner.id)" *ngIf="authService.getUserRole() === 'ADMIN'" class="btn btn-danger">Termin löschen</button>
+    <button (click)="delete()" *ngIf="authService.getUserRole() === 'ADMIN'" class="btn btn-danger">Termin löschen</button>
   </div>
 </div>
 <div class="my-2">

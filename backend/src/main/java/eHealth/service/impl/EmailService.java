@@ -24,7 +24,7 @@ public class EmailService {
         }
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("sepmticketline1@gmail.com");
+        message.setFrom("ehealth@gmx.at");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);

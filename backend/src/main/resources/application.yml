@@ -25,14 +25,14 @@ spring:
     console:
       enabled: true
   mail:
-    host: smtp.gmail.com
+    host: mail.gmx.net
     port: 587
-    username: sepmticketline1@gmail.com
-    password: sepmpassword
+    username: ehealth@gmx.at
+    password: L7BEv7j4WPS2ZHB
     properties.mail.smtp:
       auth: true
       starttls.enable: true
-      ssl.trust: smtp.gmail.com
+      ssl.trust: mail.gmx.net
 server:
   port: 8080
   error:
