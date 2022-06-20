@@ -13,5 +13,4 @@ public interface PractitionerRepository extends JpaRepository<Practitioner, Long
     Optional<Practitioner> findById(Long id);
 
     List<Practitioner> findBySpecialty(String speciality);
-
 }
