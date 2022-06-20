@@ -42,15 +42,19 @@ public class UserDataGenerator implements DataGenerator{
 //            }
 //
 //        }
-        LOGGER.info("Generating users...");
-        userRepository.deleteAll();
-        userRepository.flush();
-        userRepository.save(new User("k.arend@gmail.com", passwordEncoder.encode("password"), 5, false,
-                "Katrin", "Arend", "Ried Im Oberinntal", "6531", "Österreich", "Marktplatz 38", "05.09.1988"));
-        userRepository.save(new User("e.soeren@gmail.com", passwordEncoder.encode("password"), 5, false,
-                "Elfriede", "Sören", "Winklern", "8953", "Österreich", "Neuhofer Strasse 48", "13.12.2002"));
-        userRepository.save(new User("c.hedy@gmail.com", passwordEncoder.encode("password"), 5, false,
-                "Christa", "Hedy", "Salzburg", "5612", "Österreich", "Ditscheinergasse 70", "27.01.187"));
-        this.practitionerDataGenerator.generate();
+        if (userRepository.findAll().size() > 0) {
+            LOGGER.debug("user already generated");
+        } else {
+            LOGGER.info("Generating users...");
+//        userRepository.deleteAll();
+//        userRepository.flush();
+            userRepository.save(new User("k.arend@gmail.com", passwordEncoder.encode("password"), 5, false,
+                    "Katrin", "Arend", "Ried Im Oberinntal", "6531", "Österreich", "Marktplatz 38", "05.09.1988"));
+            userRepository.save(new User("e.soeren@gmail.com", passwordEncoder.encode("password"), 5, false,
+                    "Elfriede", "Sören", "Winklern", "8953", "Österreich", "Neuhofer Strasse 48", "13.12.2002"));
+            userRepository.save(new User("c.hedy@gmail.com", passwordEncoder.encode("password"), 5, false,
+                    "Christa", "Hedy", "Salzburg", "5612", "Österreich", "Ditscheinergasse 70", "27.01.187"));
+            this.practitionerDataGenerator.generate();
+        }
     }
 }
