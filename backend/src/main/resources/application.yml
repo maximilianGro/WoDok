@@ -24,6 +24,15 @@ spring:
   h2:
     console:
       enabled: true
+  mail:
+    host: mail.gmx.net
+    port: 587
+    username: ehealth@gmx.at
+    password: L7BEv7j4WPS2ZHB
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: mail.gmx.net
 server:
   port: 8080
   error:

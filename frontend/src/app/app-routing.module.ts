@@ -11,6 +11,7 @@ import {ReminderDetailComponent} from "./component/reminder-detail/reminder-deta
 import {ReminderCreateComponent} from "./component/reminder-create/reminder-create.component";
 import {PractitionerSearchComponent} from "./component/practitioner-search/practitioner-search.component";
 import {PractitionerCalendarComponent} from "./component/practitioner-calendar/practitioner-calendar.component";
+import {BestaetigungComponent} from "./component/bestaetigung/bestaetigung.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'practitioners', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'termin/:id', component: ReminderDetailComponent},
   {path: 'termin/neu', component: ReminderCreateComponent},
   {path: 'practitioners/suche', component: PractitionerSearchComponent},
+  {path: 'appointment/bestaetigung/:id', component: BestaetigungComponent},
 ];
 
 @NgModule({

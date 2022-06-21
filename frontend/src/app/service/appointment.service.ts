@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Appointment} from "../dto/appointment";
 import {HttpClient} from '@angular/common/http';
+import {Queue} from "../dto/queue";
 
 
 const baseUri = environment.backendUrl + '/appointments';
@@ -15,6 +16,11 @@ export class AppointmentService {
   constructor(
     private http: HttpClient,
   ) {
+  }
+
+  getAppointmentById(id): Observable<Appointment> {
+    const uri = baseUri + '/byAppointment/' + id;
+    return this.http.get<Appointment>(uri);
   }
 
   getAppointmentsByPatientId(id): Observable<Appointment[]> {
@@ -30,5 +36,16 @@ export class AppointmentService {
   bookAppointment(appointment: Appointment): Observable<boolean> {
     const uri = baseUri + '/free';
     return this.http.post<boolean>(uri, appointment);
+  }
+
+  addToQueue(queue: Queue): Observable<boolean> {
+    const uri = baseUri + '/queue';
+    return this.http.post<boolean>(uri, queue);
+  }
+
+  deleteAll(practitionerId: number): Observable<boolean> {
+    const uri = baseUri + '/' + practitionerId;
+    console.log(uri);
+    return this.http.delete<boolean>(uri);
   }
 }

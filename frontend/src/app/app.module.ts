@@ -25,6 +25,7 @@ import {FlatpickrModule} from 'angularx-flatpickr';
 import {PractitionerCalendarComponent} from './component/practitioner-calendar/practitioner-calendar.component';
 import localeDe from '@angular/common/locales/de';
 import {CustomDateFormatter} from "./Entity/CustomDateFormatter";
+import { BestaetigungComponent } from './component/bestaetigung/bestaetigung.component';
 
 registerLocaleData(localeDe);
 
@@ -43,6 +44,7 @@ registerLocaleData(localeDe);
     InfoComponent,
     PractitionerSearchComponent,
     PractitionerCalendarComponent,
+    BestaetigungComponent,
   ],
   imports: [
     BrowserModule,

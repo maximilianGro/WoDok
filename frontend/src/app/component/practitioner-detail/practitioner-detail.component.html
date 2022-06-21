@@ -4,7 +4,8 @@
     <h5 class="fst-italic">{{practitioner.specialty}} </h5>
   </div>
   <div>
-    <button class="btn btn-prim" routerLink="/practitioners/{{practitioner.id}}/calendar">Termin vereinbaren</button>>
+    <button class="btn btn-prim" routerLink="/practitioners/{{practitioner.id}}/calendar">Termin vereinbaren</button>
+    <button (click)="delete()" *ngIf="authService.getUserRole() === 'ADMIN'" class="btn btn-danger">Termin löschen</button>
   </div>
 </div>
 <div class="my-2">

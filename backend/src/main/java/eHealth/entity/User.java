@@ -57,6 +57,11 @@ public class User {
             mappedBy = "practitioner")
     private List<Appointment> practitionerAppointments = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private List<Queue> queues = new ArrayList<>();
+
+
     public User(String email, String password, int lockedCounter, Boolean doctor, String firstName, String lastName, String city, String zip, String country, String street, String birthday) {
         this.email = email;
         this.password = password;
@@ -184,6 +189,14 @@ public class User {
 
     public void setPractitionerAppointments(List<Appointment> practitionerAppointments) {
         this.practitionerAppointments = practitionerAppointments;
+    }
+
+    public List<Queue> getQueues() {
+        return queues;
+    }
+
+    public void setQueues(List<Queue> queues) {
+        this.queues = queues;
     }
 
     @Override

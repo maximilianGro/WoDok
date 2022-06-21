@@ -69,6 +69,7 @@ export class ReminderOverviewComponent implements OnInit {
     this.userService.getUserId(window.localStorage.getItem('username')).subscribe({
       next: id => {
         this.userId = id;
+        console.log(id);
         this.loadAppointments();
       }
     });

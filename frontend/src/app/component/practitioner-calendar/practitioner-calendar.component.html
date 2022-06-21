@@ -71,6 +71,25 @@
     >
     </mwl-calendar-week-view>
   </div>
+  <button id="modalButton"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-outline-secondary" style="/*! padding: 10px; */margin-top: 20px;">In Warteschlange für früheren Termin reihen</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 1000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warteschlange</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Du wurdest in die Warteschlange des Arztes hinzugefügt. <br>
+        Wenn ein Termin frei wird, bekommst du eine Email, wo du den Termin innnerhalb von 15 Minuten bestätigen musst. <br>
+        <button (click)="warteschlange()" id="warteschlangeButton" type="button" class="btn btn-outline-secondary" style="/*! padding: 10px; */margin-top: 20px;">OK</button>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="book" [ngClass]="booked ? 'booked-appointment' : 'book-appointment'">

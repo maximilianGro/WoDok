@@ -1,6 +1,8 @@
 package eHealth.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Practitioner {
@@ -21,6 +23,11 @@ public class Practitioner {
     private String phone;
     @Column
     private String email;
+
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "practitioner")
+    private List<Queue> queues = new ArrayList<>();
+
 
     public Practitioner() {
 
@@ -115,5 +122,13 @@ public class Practitioner {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Queue> getQueues() {
+        return queues;
+    }
+
+    public void setQueues(List<Queue> queues) {
+        this.queues = queues;
     }
 }
