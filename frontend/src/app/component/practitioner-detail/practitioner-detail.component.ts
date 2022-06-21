@@ -5,6 +5,7 @@ import {Practitioner} from "../../dto/practitioner";
 import {AuthService} from "../../service/auth.service";
 import {AppointmentService} from "../../service/appointment.service";
 
+
 @Component({
   selector: 'app-practitioner-detail',
   templateUrl: './practitioner-detail.component.html',
@@ -13,6 +14,7 @@ import {AppointmentService} from "../../service/appointment.service";
 export class PractitionerDetailComponent implements OnInit {
 
   practitioner: Practitioner;
+  linkToCalendar = '/practitioners/detail/';
 
   constructor(private route: ActivatedRoute, private practitionerService: PractitionerService, private authService: AuthService,
               private appointmentService: AppointmentService) {
@@ -23,7 +25,7 @@ export class PractitionerDetailComponent implements OnInit {
     this.practitionerService.getOne(id).subscribe({
       next: data => {
         this.practitioner = data;
-        console.log(data);
+        this.linkToCalendar = this.linkToCalendar + data.id;
       },
       error: error => {
         console.error('Error fetching practitioner', error.message);

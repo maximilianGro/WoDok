@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AppointmentService} from "../../service/appointment.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Appointment} from "../../dto/appointment";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-bestaetigung',
@@ -11,7 +12,7 @@ import {Appointment} from "../../dto/appointment";
 export class BestaetigungComponent implements OnInit {
   appointment: Appointment;
 
-  constructor(private route: ActivatedRoute, private appointmentService: AppointmentService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private appointmentService: AppointmentService, private authService: AuthService) { }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -38,6 +39,11 @@ export class BestaetigungComponent implements OnInit {
       this.appointmentService.bookAppointment(this.appointment).subscribe({
         next: () => {
           window.alert('Der Termin wurde gebucht');
+          if (this.authService.isLoggedIn()){
+            this.router.navigate(['/termin-uebersicht']);
+          } else {
+            this.router.navigate(['/login']);
+          }
         },
         error: error => {
           console.error('Termin konnte nicht gebucht werden', error.message);

@@ -21,7 +21,6 @@ public class AppointmentDataGenerator  implements DataGenerator {
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private static final int NUMBER_TO_GENERATE = 10;
     private final AppointmentRepository appointmentRepository;
     private final PractitionerRepository practitionerRepository;
     private final UserRepository userRepository;
@@ -46,10 +45,10 @@ public class AppointmentDataGenerator  implements DataGenerator {
             List<User> users = userRepository.findAll();
             //free appointments
             for (int i = 0; i < practitioners.size(); i++) {
-                appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 21, 10, 0),
-                        LocalDateTime.of(2022, 6, 21, 10, 45), null));
-                appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 21, 13, 15),
-                        LocalDateTime.of(2022, 6, 21, 14, 0), null));
+                appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 21, 16, 0),
+                        LocalDateTime.of(2022, 6, 21, 16, 45), null));
+                appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 21, 16, 45),
+                        LocalDateTime.of(2022, 6, 21, 17, 30), null));
                 appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 22, 10, 0),
                         LocalDateTime.of(2022, 6, 22, 10, 45), null));
                 appointmentRepository.save(new Appointment(true, practitioners.get(i), null, LocalDateTime.of(2022, 6, 22, 10, 45),

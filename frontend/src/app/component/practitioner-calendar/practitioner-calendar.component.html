@@ -84,7 +84,7 @@
       </div>
       <div class="modal-body">
         Du wurdest in die Warteschlange des Arztes hinzugefügt. <br>
-        Es wird eine Email versendet, wo du den Termin innnerhalb von 15 Minuten bestätigen musst. <br>
+        Wenn ein Termin frei wird, bekommst du eine Email, wo du den Termin innnerhalb von 15 Minuten bestätigen musst. <br>
         <button (click)="warteschlange()" id="warteschlangeButton" type="button" class="btn btn-outline-secondary" style="/*! padding: 10px; */margin-top: 20px;">OK</button>
 
       </div>
@@ -105,15 +105,17 @@
       <div class="modal-body">
         <div>
           Dr. {{practitioner.firstName}} {{practitioner.lastName}}
+          <br>
+          {{practitioner.address}}
         </div>
       </div>
       <div class="modal-footer">
-        <div>
+        <div id="patient-description">
           Kurze Beschreibung deiner derzeitigen Beschwerden und Zusammenfassung deiner Patientengeschichte
           <textarea #name="ngModel" [(ngModel)]="appointmentToBook.patientDescription" class="form-control"
                     id="patientDescritpion" name="patientDescription"></textarea>
         </div>
-        <button class="btn btn-outline-secondary" type="submit">
+        <button class="btn btn-outline-secondary" id="book-button" type="submit">
           Bestätigen
         </button>
       </div>

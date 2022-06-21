@@ -52,4 +52,14 @@ public class Queue {
     public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    @Override
+    public String toString() {
+        return "Queue{" +
+                "id=" + id +
+                ", user=" + user +
+                ", practitioner=" + practitioner +
+                ", timeStamp=" + timeStamp +
+                '}';
+    }
 }

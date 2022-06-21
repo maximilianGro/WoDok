@@ -87,7 +87,6 @@ export class PractitionerCalendarComponent implements OnInit {
       next: data => {
         this.freeAppointments = data;
         this.addFreeAppointments(data);
-        console.log(data);
       }
     });
   }
@@ -121,7 +120,8 @@ export class PractitionerCalendarComponent implements OnInit {
 
   bookAppointment() {
     this.booked = true;
-    this.appointmentService.bookAppointment(this.appointmentToBook);
+    this.appointmentToBook.freeAppointment = false;
+    this.appointmentService.bookAppointment(this.appointmentToBook).subscribe();
   }
 
   close() {
@@ -137,7 +137,7 @@ export class PractitionerCalendarComponent implements OnInit {
     this.appointmentService.addToQueue(queue).subscribe({
       next: () => {
         window.alert('Erfolgreich in die Warteschlange hinzugefügt');
-        this.router.navigate(['/']);
+        this.router.navigate(['/practitioners']);
       },
       // eslint-disable-next-line @typescript-eslint/no-shadow
       error: (error) => {
