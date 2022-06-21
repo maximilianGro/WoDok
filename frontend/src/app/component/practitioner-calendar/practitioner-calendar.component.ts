@@ -84,7 +84,6 @@ export class PractitionerCalendarComponent implements OnInit {
       next: data => {
         this.freeAppointments = data;
         this.addFreeAppointments(data);
-        console.log(data);
       }
     });
   }
@@ -118,7 +117,8 @@ export class PractitionerCalendarComponent implements OnInit {
 
   bookAppointment() {
     this.booked = true;
-    this.appointmentService.bookAppointment(this.appointmentToBook);
+    this.appointmentToBook.freeAppointment = false;
+    this.appointmentService.bookAppointment(this.appointmentToBook).subscribe();
   }
 
   close() {

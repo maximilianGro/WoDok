@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PractitionerService} from "../../service/practitioner.service";
 import {Practitioner} from "../../dto/practitioner";
 
+
 @Component({
   selector: 'app-practitioner-detail',
   templateUrl: './practitioner-detail.component.html',
@@ -11,6 +12,7 @@ import {Practitioner} from "../../dto/practitioner";
 export class PractitionerDetailComponent implements OnInit {
 
   practitioner: Practitioner;
+  linkToCalendar = '/practitioners/detail/';
 
   constructor(private route: ActivatedRoute, private practitionerService: PractitionerService) {
   }
@@ -20,7 +22,7 @@ export class PractitionerDetailComponent implements OnInit {
     this.practitionerService.getOne(id).subscribe({
       next: data => {
         this.practitioner = data;
-        console.log(data);
+        this.linkToCalendar = this.linkToCalendar + data.id;
       },
       error: error => {
         console.error('Error fetching practitioner', error.message);

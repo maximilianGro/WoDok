@@ -48,11 +48,11 @@ public class UserDataGenerator implements DataGenerator{
             LOGGER.info("Generating users...");
 //        userRepository.deleteAll();
 //        userRepository.flush();
-            userRepository.save(new User("k.arend@gmail.com", passwordEncoder.encode("password"), 5, false,
+            userRepository.save(new User("k.arend@gmail.com", passwordEncoder.encode("password"), 0, false,
                     "Katrin", "Arend", "Ried Im Oberinntal", "6531", "Österreich", "Marktplatz 38", "05.09.1988"));
-            userRepository.save(new User("e.soeren@gmail.com", passwordEncoder.encode("password"), 5, false,
+            userRepository.save(new User("e.soeren@gmail.com", passwordEncoder.encode("password"), 0, false,
                     "Elfriede", "Sören", "Winklern", "8953", "Österreich", "Neuhofer Strasse 48", "13.12.2002"));
-            userRepository.save(new User("c.hedy@gmail.com", passwordEncoder.encode("password"), 5, false,
+            userRepository.save(new User("c.hedy@gmail.com", passwordEncoder.encode("password"), 0, false,
                     "Christa", "Hedy", "Salzburg", "5612", "Österreich", "Ditscheinergasse 70", "27.01.187"));
             this.practitionerDataGenerator.generate();
         }

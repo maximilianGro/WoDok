@@ -14,7 +14,7 @@
       <tr *ngFor=" let appointment of appointments; let i = index">
         <td>{{appointment.start | date: 'd/L/y'}}</td>
         <td>{{appointment.start | date: 'H:mm'}} - {{appointment.end | date: 'H:mm'}}</td>
-        <td *ngIf="practitioners[i]">{{practitioners[i].firstName}} {{practitioners[i].lastName}}</td>
+        <td *ngIf="practitioners[i]"><a id="practitioner-link" routerLink="/practitioners/detail/{{practitioners[i].id}}">{{practitioners[i].firstName}} {{practitioners[i].lastName}}</a></td>
       </tr>
     </table>
   </div>

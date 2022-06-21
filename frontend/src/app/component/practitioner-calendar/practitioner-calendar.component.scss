@@ -2,8 +2,6 @@
   background-color: lightgrey;
   position: fixed;
   top: 33%;
-  bottom: 33%;
-  height: 33%;
   width: 66%;
   left: 15%;
   right: 15%;
@@ -35,6 +33,17 @@
   width: 100%;
 }
 
+//#book-button {
+//  position: static;
+//  right: 10px;
+//  bottom: 10px;
+//}
+//
+//#patient-description {
+//  position: static;
+//  width: 80%;
+//}
+
 ul {
   list-style: none;
   display: flex;
@@ -44,5 +53,9 @@ ul {
 
 li {
   margin: auto;
+}
+
+.event-class .cal-event-title {
+  color: black;
 }
 
